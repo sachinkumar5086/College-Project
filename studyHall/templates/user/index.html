@@ -1,0 +1,52 @@
+{% extends "userbase.html" %}
+{% load static %}
+{% block userblock %}
+
+<div class="row mt-1">
+                <div class="col-sm-6">
+                    <!-- carousel -->
+                    <div id="carouselExampleInterval" class="carousel slide" data-bs-ride="carousel">
+                        <div class="carousel-inner">
+
+                          <div class="carousel-item active" data-bs-interval="2000">
+                            <img src="/{{sactive.slider_pic}}" class="d-block w-100" alt="image" style="max-height: 350px;">
+                          </div>
+                            {% for i in sdata%}
+
+                          <div class="carousel-item" data-bs-interval="2000">
+                            <img src="/{{i.slider_pic}}" class="d-block w-100" alt="image" style="max-height: 350px;">
+                          </div>
+                          {% endfor %}
+                        </div>
+                        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="prev">
+                          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                          <span class="visually-hidden">Previous</span>
+                        </button>
+                        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="next">
+                          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                          <span class="visually-hidden">Next</span>
+                        </button>
+                    </div>
+                    <!-- end crousel -->
+                </div>
+                <div class="col-sm-6 text-center">
+
+                    <div>
+                        <b style="font-size: 22px; color: rgb(99, 3, 54);">Announcement</b>
+                    </div>
+                    <marquee direction="up" scrollamount="5" scrolldelay="100" onmouseover=stop() onmouseleave=start()>
+                        <div>
+                            <p>this is an example </p>
+                            <p>this is an example </p>
+                            <p>this is an example </p>
+                            <p>this is an example </p>
+                            <p>this is an example </p>
+                            <p>this is an example </p>
+                            <p>this is an example </p>
+
+                        </div>
+                    </marquee>
+                </div>
+</div>
+
+{% endblock %}

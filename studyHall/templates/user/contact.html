@@ -1,0 +1,65 @@
+{% extends 'userbase.html'%}
+{% load static %}
+{% block userblock %}
+<style>
+    .input-group
+      {
+       height:40px;
+       margin-bottom:15px;
+       }
+    .input-group-text
+    {
+     background:#d4d4d4;
+    }
+
+</style>
+<div class="text-center fs-2 txt-mycolor1 pt-4">Contact<b class="txt-mycolor2"> Us</b></div>
+<div class="row">
+<div class="col-sm-10 mx-auto">
+    <div class="row">
+        <div class="col-sm-6">
+            <form method="post">
+                {% csrf_token %}
+                <div class="row">
+                        <div>
+                         Name<b class="text-danger">*</b>
+                         <div class="input-group">
+                            <i class="input-group-text">
+                                <i class="fa-solid fa-user"></i>
+                            </i>
+                            <input type="text" name="name" required placeholder="Enter Your Name" class="form-control"/>
+                         </div>
+                        </div>
+
+                        <div>
+                            Email Id<b class="text-danger">*</b>
+                            <div class="input-group">
+                    <i class="input-group-text py-0">
+                        <i class="fa-solid fa-envelope"></i>
+                    </i>
+                    <input type="email" name="email" required placeholder="Enter Email ID*" class="form-control"/>
+                    </div>
+                        </div>
+
+                        <div>
+                    Phone Number
+                    <div class="input-group">
+                    <i class="input-group-text py-0">
+                        <i class="fa-solid fa-phone"></i>
+                    </i>
+                    <input type="number" name="mobile" required placeholder="Whatsapp Number" class="form-control"/>
+                    </div>
+                        </div>
+
+                        <div>
+                     Message
+                     <textarea name="msg" class="form-control" placeholder="message"></textarea>
+                   </div>
+                    </div>
+                    <button type="submit" value="login" class=" btn text-light" style="background:#7d088a;">submit</button>
+            </form>
+        </div>
+    </div>
+</div>
+</div>
+{% endblock %}

@@ -1,0 +1,55 @@
+{% extends 'userbase.html'%}
+{% load static %}
+{% block userblock %}
+<!--
+<style>
+    .input-group
+      {
+       height:40px;
+       margin-bottom:15px;
+       }
+    .input-group-text
+    {
+     background:#d4d4d4;
+    }
+    .btn
+    {
+    margin-bottom:3%
+    }
+</style>
+-->
+<div class="text-center fs-2">Teacher <b>Login</b></div>
+<div class="row">
+<div class="col-sm-6 mx-auto">
+    <form method="post">
+        {% csrf_token %}
+        <div class="row">
+             <div class="my-2">
+                 Email Id<b class="text-danger">*</b>
+                 <div class="input-group">
+                    <i class="input-group-text py-0">
+                        <i class="fa-solid fa-envelope"></i>
+                    </i>
+                    <input type="email" name="email" required placeholder="Enter Email ID*" class="form-control"/>
+                    </div>
+             </div>
+
+             <div>
+                    Password<b class="text-danger">*</b>
+                    <div class="input-group">
+                    <i class="input-group-text py-0">
+                        <i class="fa-solid fa-key"></i>
+                    </i>
+                    <input type="password" name="passwd" required placeholder="Enter Password*" class="form-control"/>
+                    </div>
+                        </div>
+            </div>
+        <div class="my-3">
+            <button type="submit" value="login" class=" btn text-light" style="background:#7d088a;">Submit</button>
+        </div>
+
+    </form>
+</div>
+</div>
+
+{% endblock %}

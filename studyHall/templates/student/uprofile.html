@@ -1,0 +1,190 @@
+{% extends 'studentbase.html'%}
+{% load static %}
+{% block studentzone %}
+<style>
+    #frm
+    {
+     display:none;
+    }
+    #prm
+    {
+     display:none;
+    }
+    #pic
+    {
+     display:none;
+    }
+    #nam
+    {
+     display:none;
+    }
+    #phone
+    {
+     display:none;
+    }
+    .form-control
+    {
+     margin:20px 0px 10px;
+     }
+</style>
+<script>
+    function demo()
+    {
+    document.getElementById("frm").style.display="block"
+    }
+    function demo1()
+    {
+    document.getElementById("prm").style.display="block"
+    }
+    function demo2()
+    {
+    document.getElementById("pic").style.display="block"
+    }
+    function demo3()
+    {
+    document.getElementById("nam").style.display="block"
+    }
+    function demo4()
+    {
+    document.getElementById("phone").style.display="block"
+    }
+</script>
+{% if not request.session.user %}
+<script>
+    alert('You have to login first..');
+    location.href="/user/signin/"
+</script>
+{% endif %}
+<div class="text-center fs-2 mt-2">
+    Update <B class="txt-mycolor1">Profile</B>
+</div>
+<div class="row">
+    <div class="col-sm-5 mx-auto">
+        {% for j in udata %}
+        <!--start card-->
+        <div class="card mb-3">
+  <div class="row g-0">
+    <div class="col-md-4 p-3">
+      <img src="/{{j.profile}}" class="img-fluid rounded-start" style="max-height:180px;" alt="...">
+    </div>
+    <div class="col-md-8">
+      <div class="card-body">
+        <p class="card-text" style="line-height:30px; font-size:16px;">
+            <i class="fa-solid fa-user"></i> {{j.name}}<br/>
+            <i class="fa-solid fa-phone"></i> {{j.mobile}}<br/>
+            <i class="fa-solid fa-city"></i> {{j.college}}<br/>
+            <i class="fa-solid fa-laptop"></i> {{j.course}}<br/>
+            <a href="#" class="btn btn-primary text-light btn-sm" onclick="demo()">
+                Edit Profile <i class="fa-solid fa-pen-to-square"></i>
+            </a>
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+        <!--end card-->
+        {% endfor %}
+    </div>
+</div>
+
+<!--
+<div class="row py-4" id="frm" style="background:#cee8e6;">
+    <div class="col-sm-6 mx-auto">
+        <form method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    Name
+                    <input type="text" name="name" required placeholder="Name.." class="form-control"/>
+                    Password
+                    <input type="password" name="passwd" required placeholder="Password.." class="form-control"/>
+                    Mobile(Whatsapp No.)
+                    <input type="text" name="mobile" required placeholder="Mobile.." class="form-control"/>
+                    college
+                    <input type="text" name="college" required placeholder="College.." class="form-control"/>
+                    Course
+                    <input type="text" name="course" required placeholder="Course.." class="form-control"/>
+                    Profile Picture
+                    <input type="file" name="fu" class="form-control"/><br/>
+                     <input type="submit" value="save" class=" btn bg-mycolor2 text-light"/>
+
+                </form>
+    </div>
+</div>
+-->
+<!--profile button-->
+<div class="row" id="frm">
+    <div class="col-sm-7 mx-auto">
+        <div class="row mx-auto" style="padding-left:12%; max-width:80%;">
+            <div class="col-lg-3 col-md-12 col-sm-12 py-2" >
+                <a href="#" class="btn btn-outline-dark btn-sm" onclick="demo1()">Password</a>
+            </div>
+            <div class="col-lg-3 col-md-12 col-sm-12 py-2" >
+                <a href="#" class="btn btn-outline-dark btn-sm" onclick="demo2()">Picture</a>
+            </div>
+            <div class="col-lg-3 col-md-12 col-sm-12 py-2" style="margin-left:-5%;">
+                <a href="#" class="btn btn-outline-dark btn-sm" onclick="demo3()">Name</a>
+
+            </div>
+            <div class="col-lg-3 col-md-12 col-sm-12 py-2" style="margin-left:-5%;">
+                <a href="#" class="btn btn-outline-dark btn-sm" onclick="demo4()">Phone</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--password-->
+
+<div class="row py-4" id="prm" >
+    <div class="col-sm-6 mx-auto" style="background:#cee8e6; max-height:400px;">
+        <form method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <h3 class="text-center">Changer your password</h3>
+                    <input type="password" name="opasswd" required placeholder="Enter Old Password" class="form-control"/>
+                    <input type="password" name="passwd" required placeholder="Enter New Password" class="form-control"/>
+                     <input type="submit" value="Save" class=" btn bg-mycolor2 text-light my-2"/>
+                </form>
+    </div>
+</div>
+
+<!--picture-->
+<div class="row py-4" id="pic" >
+    <div class="col-sm-6 mx-auto" style="background:#cee8e6; max-height:400px;">
+        <form method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <h3 class="text-center">Changer Your Picture</h3>
+                    Select Your Profile Picture
+                    <input type="file" name="fu" class="form-control"/><br/>
+                    <input type="password" name="opasswd" required placeholder="Enter Password" class="form-control"/>
+                    <input type="submit" value="Save" class=" btn bg-mycolor2 text-light mb-2"/>
+                </form>
+    </div>
+</div>
+
+<!--name-->
+<div class="row py-4" id="nam" >
+    <div class="col-sm-6 mx-auto" style="background:#cee8e6; max-height:400px;">
+        <form method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <h3 class="text-center">Changer Your Picture</h3>
+                    Name
+                    <input type="text" name="name" required placeholder="Name.." class="form-control"/>
+                    <input type="password" name="opasswd" required placeholder="Enter Password" class="form-control"/>
+                    <input type="submit" value="Save" class=" btn bg-mycolor2 text-light mb-2"/>
+                </form>
+    </div>
+</div>
+
+<!--Phone-->
+<div class="row py-4" id="phone" >
+    <div class="col-sm-6 mx-auto" style="background:#cee8e6; max-height:400px;">
+        <form method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <h3 class="text-center">Changer Your Phone Number</h3>
+                    Mobile
+                    <input type="text" name="mobile" required placeholder="Whatsapp No..." class="form-control"/>
+                    <input type="password" name="opasswd" required placeholder="Enter Password" class="form-control"/>
+                     <input type="submit" value="Save" class=" btn bg-mycolor2 text-light mb-2"/>
+                </form>
+    </div>
+</div>
+
+{% endblock %}

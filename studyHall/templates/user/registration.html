@@ -1,0 +1,132 @@
+{% extends 'userbase.html'%}
+{% load static %}
+{% block userblock %}
+<style>
+    .input-group
+      {
+       height:40px;
+       margin-bottom:15px;
+       }
+    .input-group-text
+    {
+     background:#d4d4d4;
+    }
+</style>
+<div class="text-center txt-mycolor1 fs-2 mt-4 "><small>Sign </small><small class="txt-mycolor2">Up</small></div>
+<div class="row">
+    <div class="col-sm-10 py-4 mx-auto">
+        <div class="row mx-auto">
+            <div class="col-sm-10 mx-auto">
+                <form method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+
+                    <div class="row">
+                        <div class="col-lg-6 col-md-6 col-sm-12">
+                         Name<b class="text-danger">*</b>
+                         <div class="input-group">
+                            <i class="input-group-text">
+                                <i class="fa-solid fa-user"></i>
+                            </i>
+                            <input type="text" name="name" required placeholder="Enter Your Name" class="form-control"/>
+                         </div>
+                        </div>
+
+                        <div class="col-lg-6 col-md-6 col-sm-12">
+                            Email Id<b class="text-danger">*</b>
+                            <div class="input-group">
+                    <i class="input-group-text py-0">
+                        <i class="fa-solid fa-envelope"></i>
+                    </i>
+                    <input type="email" name="email" required placeholder="Enter Email ID*" class="form-control"/>
+                    </div>
+                        </div>
+
+                        <div class="col-lg-6 col-md-6 col-sm-12">
+                    Password<b class="text-danger">*</b>
+                    <div class="input-group">
+                    <i class="input-group-text py-0">
+                        <i class="fa-solid fa-key"></i>
+                    </i>
+                    <input type="password" name="passwd" required placeholder="Enter Password*" class="form-control"/>
+                    </div>
+                        </div>
+
+                        <div class="col-lg-6 col-md-6 col-sm-12">
+                    Phone Number
+                    <div class="input-group">
+                    <i class="input-group-text py-0">
+                        <i class="fa-solid fa-phone"></i>
+                    </i>
+                    <input type="number" name="mobile" required placeholder="Whatsapp Number" class="form-control"/>
+                    </div>
+                        </div>
+
+
+
+                        <div class="col-lg-6 col-md-6 col-sm-12">
+                    Course
+                    <div class="input-group">
+                    <i class="input-group-text py-0">
+                        <i class="fa-solid fa-computer"></i>
+                    </i>
+                    <input type="text" name="course" required placeholder="Course.." class="form-control"/>
+                    </div>
+                        </div>
+
+                     <!--
+                     <div class="col-lg-6 col-md-6 col-sm-12">
+                    <div class="input-group">
+                    <i class="input-group-text py-0">
+                        <i class="fa-solid fa-clock"></i>
+                    </i>
+                    <select name="pyear" class="form-control">
+                        <option>Select Persuing Year</option>
+                        <option>I year</option>
+                        <option>II year</option>
+                        <option>III year</option>
+                        <option>IV year</option>
+                    </select>
+                    </div>
+                        </div>
+
+
+                        <div class="col-lg-6 col-md-6 col-sm-12">
+                    <div class="input-group">
+                    <i class="input-group-text py-0">
+                        <i class="fa-solid fa-pencil"></i>
+                    </i>
+                    <select name="batch" class="form-control">
+                        <option>Select your batch</option>
+                        {% for i in bdata %}
+                        <option value="{{i.id}}">{{i.batch_name}}</option>
+                        {% endfor %}
+                    </select>
+                    </div>
+                       </div>
+
+-->
+                        <div class="col-lg-6 col-md-6 col-sm-12">
+                    Registration fee:
+                    <div class="input-group">
+                    <i class="input-group-text py-0">
+                        <i class="fa-solid fa-indian-rupee-sign"></i>
+                    </i>
+                    <input readonly name="course" required placeholder="1000" class="form-control"/>
+                    </div>
+                       </div>
+
+                        <div class="col-lg-6 col-md-6 col-sm-12">
+                    Profile Picture
+                    <input type="file" name="fu" class="form-control" required/>
+                       </div>
+                     </div>
+                    <input type="submit" value="Register Now" class=" btn bg-mycolor2 text-light mt-3"/>
+                    <button type="reset" value="Reset" class=" btn text-light mt-3 mx-5" style="background:#7d088a;">Reset</button>
+                </form>
+
+            </div>
+                <div class="col-sm-6"></div>
+        </div>
+    </div>
+</div>
+{% endblock %}
