@@ -126,4 +126,8 @@ class submittedtask(models.Model):
 class slider(models.Model):
     slider_pic = models.ImageField(upload_to='static/slider/', null=True)
 
-
+class signUp(models.Model):
+    name=models.CharField(max_length=100, null=True)
+    email=models.EmailField(max_length=150,null=True)
+    mobile=models.IntegerField(max_length=12,null=True)
+    course=models.CharField(max_length=100,null=True)

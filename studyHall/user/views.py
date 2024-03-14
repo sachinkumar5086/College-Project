@@ -14,8 +14,16 @@ def about(request):
     return render(request,"user/about.html")
 def feedback(request):
     return render(request,'user/feedback.html')
-def signup(request):
-    return render(request,'user/registration.html')
+def registration(request):
+    course=department.objects.all().order_by('id')
+    cdata={"course":course}
+    if request.method=="POST":
+        a=request.POST.get('name')
+        b=request.POST.get('email')
+        c=request.POST.get('mobile')
+        d=request.POST.get('course')
+        signUp(name=a,email=b,mobile=c,course=d).save()
+    return render(request,'user/registration.html',cdata)
 
 def contact(request):
     if request.method=="POST":
@@ -52,8 +60,6 @@ def login(request):
             request.session['semester'] = str(y[0].semester)
             request.session['semester_id'] = str(y[0].semester.id)
 
-
-
             return HttpResponse("<script>location.href='/student/index/'</script>")
         else:
             return HttpResponse("<script>alert('your username or password is incorrect...');location.href='/user/login/'</script>")
@@ -63,3 +69,4 @@ def successstory(request):
 
 def teacherlogin(request):
     return render(request,'user/teacherlogin.html')
+

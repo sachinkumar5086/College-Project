@@ -59,3 +59,7 @@ admin.site.register(teacher,teacherAdmin)
 class subjectAdmin(admin.ModelAdmin):
     list_display = ('id','subject_code','subject_name','department','semester','teacher','date')
 admin.site.register(subject,subjectAdmin)
+
+class signUpAdmin(admin.ModelAdmin):
+    list_display = ('name','email','mobile','course')
+admin.site.register(signUp,signUpAdmin)
