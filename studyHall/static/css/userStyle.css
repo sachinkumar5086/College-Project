@@ -1,0 +1,48 @@
+:root
+        {
+        --bgcolor1:#f34573;
+        --bgcolor2:#a52a2a;
+        --txtcolor1:#f34573;
+        --txtcolor2:#2a6171;
+        }
+
+
+    .bg-mycolor1
+        {
+         background:var(--bgcolor1 ) !important;
+        }
+    .bg-mycolor2
+        {
+         background:var(--bgcolor2) !important;
+        }
+    .txt-mycolor1
+        {
+         color:var(--txtcolor1) !important;
+         }
+    .txt-mycolor2
+        {
+         color:var(--txtcolor2) !important;
+         }
+
+
+
+
+
+            #menu ul li a
+            {
+            color:white;
+            font-size:14px !important;
+            }
+            #menu
+            {
+            background:transparent !important
+            }
+            .dropdown-menu{
+                color: white;
+                background-color: rgb(43, 72, 41);
+                text-decoration: none;
+
+            }
+            .dropdown-menu a:hover{
+                background-color: rgb(43, 72, 41);
+            }
