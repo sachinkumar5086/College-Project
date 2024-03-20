@@ -7,42 +7,19 @@
     <link href="{% static 'css/bootstrap.css'%}" rel="stylesheet"/>
     <link href="{% static 'css/all.css'%}" rel="stylesheet"/>
     <link href="{% static 'css/userStyle.css'%}" rel="stylesheet"/>
-        <style>
-            .bg-mycolor2{
-                background-color:rgb(99, 3, 54);
-            }
 
-            #menu ul li a
-            {
-            color:white;
-            font-size:14px !important;
-            }
-            #menu
-            {
-            background:transparent !important
-            }
-            .dropdown-menu{
-                color: white;
-                background-color: rgb(43, 72, 41);
-                text-decoration: none;
-
-            }
-            .dropdown-menu a:hover{
-                background-color: rgb(43, 72, 41);
-            }
-        </style>
 </head>
 <body>
-        <div class="container-fluid bg-dark py-3">
+        <div class="container-fluid bg-mycolorDark py-3" >
             <div class="row t1 header" >
-                <div class="col-sm-2 text-light" >
+                <div class="col-sm-2" >
 
                     <img src="{%static 'images/logo.png'%}" class="img-fluid" alt="logo" style="max-width: 50px; margin-left:140px;padding-left: 10px;">
 
                 </div>
-                <div class="col-sm-3 text-center text-light" style="font-family:Arial, Helvetica, sans-serif;" ><h2 style="font-size:22px;">Study Hall College</h2><small style="font-size: 14px;">(Affiliated to the University of Lucknow)</small>
+                <div class="col-sm-3 text-center txt-mycolorWhite"  ><h2 style="font-size:22px;">Study Hall College</h2><small style="font-size: 14px;">(Affiliated to the University of Lucknow)</small>
             </div>
-                <div class="col-sm-7 text-center text-light" style=" font-size: 40px;">
+                <div class="col-sm-7 text-center txt-mycolorWhite" style=" font-size: 40px;">
                     <div class="row">
                         <div class="col-sm-4" style="font-size: 14px;"><i class="fa-solid fa-envelope"></i></i> studyhall@gmail.com</div>
                             <div class="col-sm-4" style="font-size: 14px;"><i class="fa-sharp fa-solid fa-phone fa-spin" style="color: #f0754c;"></i> +91 9685747363</div>
@@ -69,12 +46,12 @@
 
             <!-- row 2 -->
             <div class="row t2 bg-mycolor2 header ">
-                <div class="col-sm-8 mx-auto ">
+                <div class="col-sm-8 ms-auto ">
                     <!--start menu--->
                     <nav class="navbar navbar-expand-lg bg-body-tertiary" id="menu">
           <div class="container-fluid ">
 
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <button class="navbar-toggler bg-mycolor1" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
               <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
@@ -89,14 +66,14 @@
                   <a class="nav-link" href="/user/about/">About Us</a>
                 </li>
                   <li class="nav-item">
-                  <a class="nav-link" href="/user/registration/">Apply Now</a>
+                  <a class="nav-link" href="/user/contact/">Apply Now</a>
                 </li>
                    <li class="nav-item">
                   <a class="nav-link" href="/user/successstory/">Our placement</a>
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                      courses
+                      Courses
                     </a>
                     <ul class="dropdown-menu">
                       <li><a class="dropdown-item" href="#">BCA</a></li>
@@ -107,7 +84,7 @@
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                      login
+                      Login
                     </a>
                     <ul class="dropdown-menu">
                       <li><a class="dropdown-item" href="/user/login">Student</a></li>

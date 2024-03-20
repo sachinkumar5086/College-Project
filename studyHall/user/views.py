@@ -14,7 +14,7 @@ def about(request):
     return render(request,"user/about.html")
 def feedback(request):
     return render(request,'user/feedback.html')
-def registration(request):
+def contact(request):
     course=department.objects.all().order_by('id')
     cdata={"course":course}
     if request.method=="POST":
@@ -23,17 +23,8 @@ def registration(request):
         c=request.POST.get('mobile')
         d=request.POST.get('course')
         signUp(name=a,email=b,mobile=c,course=d).save()
-    return render(request,'user/registration.html',cdata)
+    return render(request,'user/contact.html',cdata)
 
-def contact(request):
-    if request.method=="POST":
-        a= request.POST.get('name')
-        b=request.POST.get('email')
-        c=request.POST.get('mobile')
-        d=request.POST.get('msg')
-        contactus(name=a,email=b,mobile=c,message=d).save()
-        return HttpResponse("<script>alert('thanks for contacting me'); location.href='/user/contact/'<script>")
-    return render(request,'user/contact.html')
 
 def feedback(request):
     if request.method=="POST":
