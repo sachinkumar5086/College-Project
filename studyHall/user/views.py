@@ -36,7 +36,7 @@ def feedback(request):
         return HttpResponse("<script>alert('Thanks for giving me feedback'); location.href='/user/feedback/'</script>")
     return render(request,"user/feedback.html")
 
-def login(request):
+def studentlogin(request):
     if request.method=="POST":
         email=request.POST.get('email')
         passwd = request.POST.get('passwd')
@@ -53,8 +53,8 @@ def login(request):
 
             return HttpResponse("<script>location.href='/student/index/'</script>")
         else:
-            return HttpResponse("<script>alert('your username or password is incorrect...');location.href='/user/login/'</script>")
-    return render(request,'user/login.html')
+            return HttpResponse("<script>alert('your username or password is incorrect...');location.href='/user/studentlogin/'</script>")
+    return render(request,'user/studentlogin.html')
 def successstory(request):
     return render(request,'user/successstory.html')
 

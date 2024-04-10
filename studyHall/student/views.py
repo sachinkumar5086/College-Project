@@ -37,8 +37,8 @@ def mytask(request):
     return render(request,'student/tasks.html',md)
 def uprofile(request):
     user=request.session.get('user')
-    udata=signup.objects.filter(email=user)
-    upd=signup.objects.get(email=user)
+    udata=student.objects.filter(email=user)
+    upd=student.objects.get(email=user)
     oldpasswd=request.POST.get('opasswd')
     md={"udata":udata}
     if request.method=="POST":
@@ -96,3 +96,11 @@ def stask(request):
             submittedtask(title=title,tid=tid,answer_file=answer_file,userid=user).save()
             return  HttpResponse("<script>alert('Your task has been submitted successfully...');location.href='/student/tasks'</script>")
     return render(request,'student/stask.html')
+def logout(request):
+    user=request.session.get('user')
+    if user:
+        del request.session['user']
+        del request.session['userpic']
+        del request.session['username']
+        return HttpResponse("<script>location.href='/user/index/'</script>")
+    return render(request,'student/logout.html')
