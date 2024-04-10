@@ -14,18 +14,17 @@ def about(request):
     return render(request,"user/about.html")
 def feedback(request):
     return render(request,'user/feedback.html')
-def signup(request):
-    return render(request,'user/registration.html')
-
 def contact(request):
+    course=department.objects.all().order_by('id')
+    cdata={"course":course}
     if request.method=="POST":
-        a= request.POST.get('name')
+        a=request.POST.get('name')
         b=request.POST.get('email')
         c=request.POST.get('mobile')
-        d=request.POST.get('msg')
-        contactus(name=a,email=b,mobile=c,message=d).save()
-        return HttpResponse("<script>alert('thanks for contacting me'); location.href='/user/contact/'<script>")
-    return render(request,'user/contact.html')
+        d=request.POST.get('course')
+        signUp(name=a,email=b,mobile=c,course=d).save()
+    return render(request,'user/contact.html',cdata)
+
 
 def feedback(request):
     if request.method=="POST":
@@ -52,8 +51,6 @@ def login(request):
             request.session['semester'] = str(y[0].semester)
             request.session['semester_id'] = str(y[0].semester.id)
 
-
-
             return HttpResponse("<script>location.href='/student/index/'</script>")
         else:
             return HttpResponse("<script>alert('your username or password is incorrect...');location.href='/user/login/'</script>")
@@ -62,4 +59,20 @@ def successstory(request):
     return render(request,'user/successstory.html')
 
 def teacherlogin(request):
+    if request.method=="POST":
+        email=request.POST.get('email')
+        passwd = request.POST.get('passwd')
+        x=teacher.objects.filter(passwd=passwd,email=email).count()
+        if x==1:
+            request.session['user']=email
+            y=teacher.objects.filter(email=email,passwd=passwd)
+            request.session['userpic']=str(y[0].pic)
+            request.session['username'] = str(y[0].name)
+            request.session['department'] = str(y[0].department)
+            request.session['department_id'] = str(y[0].department.id)
+            
+            return HttpResponse("<script>location.href='/teacher/index/'</script>")
+        else:
+            return HttpResponse("<script>alert('your username or password is incorrect...');location.href='/user/teacherlogin/'</script>")
     return render(request,'user/teacherlogin.html')
+

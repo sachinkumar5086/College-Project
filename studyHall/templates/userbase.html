@@ -3,49 +3,28 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Title</title>
     <link href="{% static 'css/bootstrap.css'%}" rel="stylesheet"/>
     <link href="{% static 'css/all.css'%}" rel="stylesheet"/>
-        <style>
-            .bg-mycolor2{
-                background-color:rgb(99, 3, 54);
-            }
+    <link href="{% static 'css/userStyle.css'%}" rel="stylesheet"/>
 
-            #menu ul li a
-            {
-            color:white;
-            font-size:14px !important;
-            }
-            #menu
-            {
-            background:transparent !important
-            }
-            .dropdown-menu{
-                color: white;
-                background-color: rgb(43, 72, 41);
-                text-decoration: none;
-
-            }
-            .dropdown-menu a:hover{
-                background-color: rgb(43, 72, 41);
-            }
-        </style>
 </head>
 <body>
-        <div class="container-fluid" style="background-color: rgb(255, 255, 255);">
-            <div class="row t1 header mt-2" >
-                <div class="col-sm-2 text-light" >
+        <div class="container-fluid bg-mycolorDark py-3" >
+            <div class="row t1 header" >
+                <div class="col-sm-12 col-lg-2 col-md-6  " >
 
-                    <img src="{%static 'images/logo.png'%}" class="img-fluid" alt="logo" style="max-width: 50px; margin-left:140px;padding-left: 10px;">
+                    <img src="{%static 'images/logo.png'%}" class="img-fluid " alt="logo" style="max-width: 50px; margin-left:140px;padding-left: 10px;">
 
                 </div>
-                <div class="col-sm-3 text-center" style="color: brown;font-family:Arial, Helvetica, sans-serif;" ><h2 style="font-size:22px;">Study Hall College</h2><small style="font-size: 14px;">(Affiliated to the University of Lucknow)</small>
+                <div class="col-sm-12 col-md-6 col-lg-3 text-center txt-mycolorWhite"  ><h2 style="font-size:22px;">Study Hall College</h2><small style="font-size: 14px;">(Affiliated to the University of Lucknow)</small>
             </div>
-                <div class="col-sm-7 text-center" style=" font-size: 40px; color: brown;">
+                <div class="col-sm-12 col-md-6 col-lg-7 text-center txt-mycolorWhite" style=" font-size: 40px;">
                     <div class="row">
-                        <div class="col-sm-4" style="font-size: 14px;"><i class="fa-solid fa-envelope"></i></i> studyhall@gmail.com</div>
-                            <div class="col-sm-4" style="font-size: 14px;"><i class="fa-sharp fa-solid fa-phone fa-spin" style="color: #f0754c;"></i> +91 9685747363</div>
-                            <div class="col-sm-4" style="font-size: 14px;">
+                        <div class="col-sm-4 col-md-6" style="font-size: 14px;"><i class="fa-solid fa-envelope"></i></i> studyhall@gmail.com</div>
+                            <div class="col-sm-4 col-md-6" style="font-size: 14px;"><i class="fa-sharp fa-solid fa-phone fa-spin" style="color: #f0754c;"></i> +91 9685747363</div>
+                            <div class="col-sm-4 col-md-6" style="font-size: 14px;">
 
                                     <a href="https://www.facebook.com/techpilelko"><i class="fa-brands fa-facebook ps-3"></i></a>
                                     <a href="https://www.instagram.com/tptlko/"> <i class="fa-brands fa-instagram ps-3"></i></a>
@@ -58,7 +37,7 @@
                         <div class="col-sm-12 me-5 pe-5 pt-2 my-0 pb-0 text-end" style="font-size: 14px;">
                             <a href="/user/contact/" class="btn btn-sm rounded-pill text-light" style="background:#7e8853">Enquiry</a>
                             <a href="/user/feedback/" class="btn btn-sm btn-secondary rounded-pill text-light">feedback</a>
-                            <a href="/user/registration/" class="btn btn-sm btn-success rounded-pill text-light">Apply Now</a>
+                            
                         </div>
                     </div>
 
@@ -67,13 +46,13 @@
             </div>
 
             <!-- row 2 -->
-            <div class="row t2 bg-mycolor2 header" style="padding-left:335px;">
-                <div class="col-sm-12 ">
+            <div class="row t2 bg-mycolor2 header ">
+                <div class="col-sm-8 ms-auto ">
                     <!--start menu--->
                     <nav class="navbar navbar-expand-lg bg-body-tertiary" id="menu">
-          <div class="container-fluid">
+          <div class="container-fluid ">
 
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <button class="navbar-toggler bg-mycolor1" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
               <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
@@ -88,14 +67,14 @@
                   <a class="nav-link" href="/user/about/">About Us</a>
                 </li>
                   <li class="nav-item">
-                  <a class="nav-link" href="/user/registration/">Registration</a>
+                  <a class="nav-link" href="/user/contact/">Apply Now</a>
                 </li>
                    <li class="nav-item">
                   <a class="nav-link" href="/user/successstory/">Our placement</a>
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                      courses
+                      Courses
                     </a>
                     <ul class="dropdown-menu">
                       <li><a class="dropdown-item" href="#">BCA</a></li>
@@ -106,11 +85,12 @@
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                      login
+                      Login
                     </a>
                     <ul class="dropdown-menu">
                       <li><a class="dropdown-item" href="/user/login">Student</a></li>
                       <li><a class="dropdown-item" href="/user/teacherlogin">Teacher</a></li>
+                      <li><a class="dropdown-item" href="/admin">Admin</a></li>
                     </ul>
                 </li>
               </ul>
@@ -132,13 +112,7 @@
 
             <div class="row bg-dark mt-5">
     <div class="row footer1 mb-2" style="background:#2a2d2f;">
-        <div  class="col-sm-4 py-5 ps-5">
-    <img src="{% static 'images/first.png'%}"  class="pt-2" height="60px" width="200px"/><br/>
-    <img src="{% static 'images/second.png'%}" class="pt-2" height="60px" width="200px"/><br/>
-            <a href="#">
-    <img src="{% static 'images/third.png'%}"    class="pt-2"height="60px" width="200px"/><br/>
-            </a>
-        </div>
+
         <div class="col-sm-4 p-5">
             <h1 style="color:white; font-size:20px;"><u >Contact</u>Address</h1>
            <p style="color:#ddd;" > <i class="fa-solid fa-house text-warning"></i>
@@ -152,7 +126,7 @@
              tushartiwari439@gmail.com
             </p>
         </div>
-        <div class="col-sm-4 py-5">
+        <div class="col-sm-4 py-5 text-end">
     <img src="{% static 'images/logo.png'%}"  height="120px" /><br/><br/>
             <b style="color:white; font-size:16px;" ><u>Stay</u>
                  Connected </b><br/>
