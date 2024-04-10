@@ -3,7 +3,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render
 
 from calendarapp.models import Event
-from user.views import login
+from user.views import studentlogin
 
 class DashboardView( View):
     # login_url = "accounts:signin"

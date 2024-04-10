@@ -14,7 +14,7 @@
 
     .bg-mycolorDark{
             background:var(--bgcolor) ! important;
-            }
+            color:var(--txtcolor4) ! important;}
     .bg-mycolor1
         {
          background:var(--bgcolor1 ) !important;

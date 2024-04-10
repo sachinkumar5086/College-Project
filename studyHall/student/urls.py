@@ -14,4 +14,6 @@ urlpatterns=[
     path('uprofile/',views.uprofile),
     path('liveclasses/', views.myliveclasses),
     path('stask/',views.stask),
+    path('logout/', views.logout),
+
 ]
