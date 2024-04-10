@@ -63,3 +63,11 @@ admin.site.register(subject,subjectAdmin)
 class signUpAdmin(admin.ModelAdmin):
     list_display = ('name','email','mobile','course')
 admin.site.register(signUp,signUpAdmin)
+
+class mysoftwareAdmin(admin.ModelAdmin):
+    list_display = ('id','software_title','software_description','link','software_picture','software_date')
+admin.site.register(mysoftware,mysoftwareAdmin)
+
+class liveclassAdmin(admin.ModelAdmin):
+    list_display = ('id','department','semester','subject','link','teacher','date','time')
+admin.site.register(liveclass,liveclassAdmin)

@@ -3,6 +3,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Title</title>
     <link href="{% static 'css/bootstrap.css'%}" rel="stylesheet"/>
     <link href="{% static 'css/all.css'%}" rel="stylesheet"/>
@@ -12,18 +13,18 @@
 <body>
         <div class="container-fluid bg-mycolorDark py-3" >
             <div class="row t1 header" >
-                <div class="col-sm-2" >
+                <div class="col-sm-12 col-lg-2 col-md-6  " >
 
-                    <img src="{%static 'images/logo.png'%}" class="img-fluid" alt="logo" style="max-width: 50px; margin-left:140px;padding-left: 10px;">
+                    <img src="{%static 'images/logo.png'%}" class="img-fluid " alt="logo" style="max-width: 50px; margin-left:140px;padding-left: 10px;">
 
                 </div>
-                <div class="col-sm-3 text-center txt-mycolorWhite"  ><h2 style="font-size:22px;">Study Hall College</h2><small style="font-size: 14px;">(Affiliated to the University of Lucknow)</small>
+                <div class="col-sm-12 col-md-6 col-lg-3 text-center txt-mycolorWhite"  ><h2 style="font-size:22px;">Study Hall College</h2><small style="font-size: 14px;">(Affiliated to the University of Lucknow)</small>
             </div>
-                <div class="col-sm-7 text-center txt-mycolorWhite" style=" font-size: 40px;">
+                <div class="col-sm-12 col-md-6 col-lg-7 text-center txt-mycolorWhite" style=" font-size: 40px;">
                     <div class="row">
-                        <div class="col-sm-4" style="font-size: 14px;"><i class="fa-solid fa-envelope"></i></i> studyhall@gmail.com</div>
-                            <div class="col-sm-4" style="font-size: 14px;"><i class="fa-sharp fa-solid fa-phone fa-spin" style="color: #f0754c;"></i> +91 9685747363</div>
-                            <div class="col-sm-4" style="font-size: 14px;">
+                        <div class="col-sm-4 col-md-6" style="font-size: 14px;"><i class="fa-solid fa-envelope"></i></i> studyhall@gmail.com</div>
+                            <div class="col-sm-4 col-md-6" style="font-size: 14px;"><i class="fa-sharp fa-solid fa-phone fa-spin" style="color: #f0754c;"></i> +91 9685747363</div>
+                            <div class="col-sm-4 col-md-6" style="font-size: 14px;">
 
                                     <a href="https://www.facebook.com/techpilelko"><i class="fa-brands fa-facebook ps-3"></i></a>
                                     <a href="https://www.instagram.com/tptlko/"> <i class="fa-brands fa-instagram ps-3"></i></a>
@@ -111,13 +112,7 @@
 
             <div class="row bg-dark mt-5">
     <div class="row footer1 mb-2" style="background:#2a2d2f;">
-        <div  class="col-sm-4 py-5 ps-5">
-    <img src="{% static 'images/first.png'%}"  class="pt-2" height="60px" width="200px"/><br/>
-    <img src="{% static 'images/second.png'%}" class="pt-2" height="60px" width="200px"/><br/>
-            <a href="#">
-    <img src="{% static 'images/third.png'%}"    class="pt-2"height="60px" width="200px"/><br/>
-            </a>
-        </div>
+
         <div class="col-sm-4 p-5">
             <h1 style="color:white; font-size:20px;"><u >Contact</u>Address</h1>
            <p style="color:#ddd;" > <i class="fa-solid fa-house text-warning"></i>
@@ -131,7 +126,7 @@
              tushartiwari439@gmail.com
             </p>
         </div>
-        <div class="col-sm-4 py-5">
+        <div class="col-sm-4 py-5 text-end">
     <img src="{% static 'images/logo.png'%}"  height="120px" /><br/><br/>
             <b style="color:white; font-size:16px;" ><u>Stay</u>
                  Connected </b><br/>

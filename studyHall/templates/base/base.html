@@ -137,7 +137,7 @@
                 {% if request.session.user %}
                 <img class="app-sidebar__user-avatar" src="/{{request.session.userpic}}" alt="User Image" height="50px" width="50px"/>
                 <div>
-                    <small class="app-sidebar__user-name">{{request.session.username}}</small>
+                    <small class="app-sidebar__user-name">{{request.session.username}}</small><br>
                     <small class="app-sidebar__user-designation">{{request.session.user}}</small>
                 </div>
                 {% endif %}

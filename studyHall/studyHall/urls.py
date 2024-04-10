@@ -23,6 +23,7 @@ urlpatterns = [
     path('user/', include('user.urls')),
     path('', include('user.urls')),
     path('student/', include('student.urls')),
+    path('teacher/', include('teacher.urls')),
 
     path("calendarapp/", include("calendarapp.urls")),
 

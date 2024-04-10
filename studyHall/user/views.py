@@ -59,5 +59,20 @@ def successstory(request):
     return render(request,'user/successstory.html')
 
 def teacherlogin(request):
+    if request.method=="POST":
+        email=request.POST.get('email')
+        passwd = request.POST.get('passwd')
+        x=teacher.objects.filter(passwd=passwd,email=email).count()
+        if x==1:
+            request.session['user']=email
+            y=teacher.objects.filter(email=email,passwd=passwd)
+            request.session['userpic']=str(y[0].pic)
+            request.session['username'] = str(y[0].name)
+            request.session['department'] = str(y[0].department)
+            request.session['department_id'] = str(y[0].department.id)
+            
+            return HttpResponse("<script>location.href='/teacher/index/'</script>")
+        else:
+            return HttpResponse("<script>alert('your username or password is incorrect...');location.href='/user/teacherlogin/'</script>")
     return render(request,'user/teacherlogin.html')
 

@@ -131,3 +131,19 @@ class signUp(models.Model):
     email=models.EmailField(max_length=150,null=True)
     mobile=models.IntegerField(null=True)
     course=models.CharField(max_length=100,null=True)
+
+class mysoftware(models.Model):
+    software_title=models.CharField(max_length=100,null=True)
+    software_description=models.TextField(null=True)
+    link=models.TextField(null=True)
+    software_picture=models.ImageField(upload_to='static/softwarepic/',null=True)
+    software_date=models.DateField()
+
+class liveclass(models.Model):
+    department = models.ForeignKey(department, on_delete=models.CASCADE, null=True)
+    semester = models.ForeignKey(semester, on_delete=models.CASCADE, null=True)
+    subject = models.ForeignKey(subject, on_delete=models.CASCADE, null=True)
+    link = models.TextField(null=True)
+    teacher=models.ForeignKey(teacher,on_delete=models.CASCADE,null=True)
+    date=models.DateField(null=True)
+    time=models.TimeField(null=True)

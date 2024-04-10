@@ -20,4 +20,4 @@ class RunningEventsListView(ListView):
     model = Event
 
     def get_queryset(self):
-        return Event.objects.get_running_events(user=srequest.session['user'])
+        return Event.objects.get_running_events(user=request.session['user'])
