@@ -8,25 +8,35 @@
 </script>
 {% endif %}
 <div class="text-center fs-2 mt-2">
-     Our<B class="text-dark"> Latest Courses</B>
+     My<B class="txt-mycolor1"> Lecture Videos</B>
+</div>
+<div class="row bgcolor1">
+    <div class="col-sm-6" >Added Lectures</div>
+    <div class="col-sm-6">Add New Lectures</div>
 </div>
 <div class="row">
-    <div class="col-sm-10 mx-auto">
+    <div class="col-sm-12">
         <div class="row">
-            <!--video category-->
-            {% for i in cdata %}
-            <div class="col-lg-3 col-md-4 col-sm-12">
-                <div class="card">
-                    <a href="/student/lecturesvideo?subject_id={{i.id}}" ><img src="/{{i.thumbnail}}" style="height:145px;" class="card-image-top"></a>
-                    <div class="card-body text-center">
-                        <a href="/student/lecturesvideo?subject_id={{i.id}}" style="text-decoration:none;color:grey;"> <h4>{{i.subject}}</h4> </a>
+            {% for i in vdata %}
+    <div class="col-sm-4">
+    <!--start card-->
+        <div class="card mb-3" style="background:#cee8e6;">
+            <div class="row g-0">
+                <div class="col-sm-4">
+                    <iframe class="img-fluid rounded-start" src="{{i.vlink}}" style="min-height-220px;" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                </div>
+                <div class="col-sm-4">
+                    <div class="card-body">
+                        <p class="card-text">{{i.video_description}}</p>
+                <p class="card-text"><small class="text-body-secondary"> Added Date: {{i.added_date}}</small></p>
+              </div>
                     </div>
                 </div>
-            </div>
-        {% endfor %}
-         <!--end video category-->
-       </div>
+    </div>
+  </div>
+</div>
+     <!--end card-->
+      {% endfor %}
     </div>
 </div>
-
 {% endblock %}

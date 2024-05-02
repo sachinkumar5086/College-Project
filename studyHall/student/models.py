@@ -81,6 +81,7 @@ class myfeedback(models.Model):
 class placement(models.Model):
     student_picture=models.ImageField(upload_to='static/placement',null=True)
     student_name=models.CharField(max_length=100,null=True)
+    department=models.ForeignKey(department,on_delete=models.CASCADE,null=True)
     session = models.ForeignKey(session, on_delete=models.CASCADE,null=True)
     company_name=models.CharField(max_length=200,null=True)
 

@@ -32,7 +32,7 @@ class myfeedbackAdmin(admin.ModelAdmin):
 admin.site.register(myfeedback,myfeedbackAdmin)
 
 class placementAdmin(admin.ModelAdmin):
-    list_display = ('id','student_picture','student_name','session','company_name')
+    list_display = ('id','student_picture','student_name','department','session','company_name')
 admin.site.register(placement,placementAdmin)
 
 class mylecturesAdmin(admin.ModelAdmin):
