@@ -76,3 +76,37 @@ def teacherlogin(request):
             return HttpResponse("<script>alert('your username or password is incorrect...');location.href='/user/teacherlogin/'</script>")
     return render(request,'user/teacherlogin.html')
 
+def successstory(request):
+    depart = request.GET.get('department')
+    year = request.GET.get('year')
+
+    ddata = department.objects.all().order_by('-id')
+    sdata = session.objects.all().order_by('-id')
+    pdata = placement.objects.all().order_by('-id')
+
+    if year is not int and depart is int :
+        year=sdata[0]
+        if depart is not None and year is not None:
+            pdata = placement.objects.filter(department=depart, session=year)
+        else:
+            pdata = placement.objects.all().order_by('-id')
+    elif depart is not int and year is int:
+        depart=ddata[0]
+
+        if depart is not None and year is not None:
+            pdata = placement.objects.filter(department=depart, session=year)
+        else:
+            pdata = placement.objects.all().order_by('-id')
+
+    # if depart is not None and year is None:
+    #     pdata = placement.objects.filter(department=depart)
+    # elif depart is None and year is not None:
+    #     pdata = placement.objects.filter(session=year)
+    # elif depart is not None and year is not None:
+    #     pdata = placement.objects.filter(department=depart, session=year)
+    # else:
+    #     pdata = placement.objects.all().order_by('-id')
+
+
+    md={"cdata":ddata,"sdata":sdata,"pdata":pdata}
+    return render(request,"user/successstory.html",md)

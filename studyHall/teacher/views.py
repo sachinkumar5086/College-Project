@@ -1,6 +1,8 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-from .models import *
+from student.models import *
+
+
 
 # Create your views here.
 def index(request):
@@ -9,16 +11,16 @@ def index(request):
 
 def lectures(request):
     department_id=request.session['department_id']
-    semester_id=request.session.get('semester_id')
-    cdata=mylectures.objects.filter(semester=semester_id,department=department_id).order_by('-id')
-    md={"cdata":cdata}
-    return render(request,'teacher/lectures.html',md)
+    cdata = semester.objects.filter().order_by('id')
+    edata=department.objects.filter(id=department_id).order_by('id')
+    md={"cdata":cdata,"edata":edata}
+    return render(request,'teacher/lecturedepartment.html',md)
 def lecturesvideo(request):
     department_id=request.session.get('department_id')
-    subject_id=request.GET.get('subject_id')
-    vdata=mylectures.objects.filter(subject=subject_id,department=department_id)
+    semester_id=request.GET.get('semester_id')
+    vdata=mylectures.objects.filter(semester=semester_id,department=department_id)
     md={"vdata":vdata}
-    return render(request,'teacher/lecturesvideo.html',md)
+    return render(request,'teacher/lectures.html',md)
 def enote(request):
     department_id=request.session.get('department_id')
     semester_id=request.session.get('semester_id')
