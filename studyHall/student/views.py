@@ -68,13 +68,13 @@ def stask(request):
     user=request.session.get('user')
     if request.method=="POST":
         tid=request.POST.get('tid')
-        title = request.POST.get('title')
+        title = request.POST.get('subject')
         answer_file=request.FILES['fu']
         x=submittedtask.objects.filter(tid=tid,userid=user).count()
         if x==1:
             return HttpResponse("<script>alert('This task is already submitted...');location.href='/student/tasks'</script>")
         else:
-            submittedtask(title=title,tid=tid,answer_file=answer_file,userid=user).save()
+            submittedtask(title=subject,tid=tid,answer_file=answer_file,userid=user).save()
             return  HttpResponse("<script>alert('Your task has been submitted successfully...');location.href='/student/tasks'</script>")
     return render(request,'student/stask.html')
 def myliveclasses(request):
