@@ -14,7 +14,14 @@
 
     .bg-mycolorDark{
             background:var(--bgcolor) ! important;
+<<<<<<< HEAD
+            color: var(--txtcolor4) ! important;
+            }
+    b{
+            color:green ! important; }
+=======
             color:var(--txtcolor4) ! important;}
+>>>>>>> feature1
     .bg-mycolor1
         {
          background:var(--bgcolor1 ) !important;
