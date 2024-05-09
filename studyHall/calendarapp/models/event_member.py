@@ -8,9 +8,7 @@ class EventMember(EventAbstract):
     """ Event member model """
 
     event = models.ForeignKey(Event, on_delete=models.CASCADE, related_name="events")
-    user = models.CharField(
-        max_length=100
-    )
+    user = models.CharField(max_length=100)
 
     class Meta:
         unique_together = ["event", "user"]

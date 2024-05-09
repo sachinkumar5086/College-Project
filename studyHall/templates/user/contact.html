@@ -2,12 +2,37 @@
 {% load static %}
 {% block userblock %}
 
+<script>
+    function validateMobileNumber() {
+              var a =document.getElementById("phone").value;
+              if (a==""){
+                document.getElementById("message").innerHTML="**Please fill mobile number";
+                return false;
+              }
+              if (isNaN(a)){
+                 document.getElementById("message").innerHTML="** Enter only numeric value";
+                 return false;
+              }
+              if (a.length<10){
+                 document.getElementById("message").innerHTML="** Mobile number must be 10 digit";
+                 return false;
+              }
+              if (a.length>10){
+                 document.getElementById("message").innerHTML="** Mobile number must be 10 digit";
+                 return false;
+              }
+              if ((a.charAt(0)!=9) && (a.charAt(0)!=8) && (a.charAt(0)!=7)){
+                 document.getElementById("message").innerHTML="** Invalid mobile number";
+                 return false;
+              }
+    }
+</script>
 <div class="text-center text-light fs-2 mt-4 ">Contact<b class="txt-mycolor3"> Us</b></div>
 <div class="row">
     <div class="col-sm-10 py-4 mx-auto">
         <div class="row mx-auto">
             <div class="col-sm-10 mx-auto">
-                <form method="post" enctype="multipart/form-data">
+                <form method="post" enctype="multipart/form-data" onsubmit="return validateMobileNumber()">
                     {% csrf_token %}
 
                     <div class="row ">
@@ -38,7 +63,8 @@
                     <i class="input-group-text py-0">
                         <i class="fa-solid fa-phone"></i>
                     </i>
-                    <input type="number" name="mobile" required placeholder="Whatsapp Number" class="form-control"/>
+                    <input type="text" name="mobile" id="phone" value="" required placeholder="Whatsapp No..." class="form-control"/>
+                    <span id="message" style="color:red;"></span>
                     </div>
                         </div>
 

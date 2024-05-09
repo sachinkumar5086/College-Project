@@ -1,13 +1,14 @@
 {% extends 'userbase.html'%}
 {% load static %}
 {% block userblock %}
+
 <div class=" text-center fs-2 text-light mt-4">Success<b class="txt-mycolor3"> Stories</b></div>
 <div class="=row my-auto ">
     <div class="col-sm-10 mx-auto my-2">
         <form method="get">
-        <div class="row">
+        <div class="row my-3">
             <div class="col-sm-5">
-                 Filter by department
+
                 <select class="form-control" name="department">
                     <option>--Select Department--</option>
                      {% for i in cdata %}
@@ -16,7 +17,7 @@
                 </select>
             </div>
             <div class="col-sm-5 ">
-                Filter by year
+
                 <select class="form-control" name="year" placeholder="Enter Your Name" >
                 <option>--Select year--</option>
                     {% for x in sdata %}
@@ -26,8 +27,7 @@
             </div>
 
             <div class="col-sm-2">
-                </br>
-            <input type="submit" value="search" class="form-control bg-mycolor1 text-light">
+            <input type="submit" value="search" class="form-control bg-mycolor2 text-light">
             </div>
         </div>
             </form>

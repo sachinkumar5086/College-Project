@@ -23,6 +23,7 @@ def contact(request):
         c=request.POST.get('mobile')
         d=request.POST.get('course')
         signUp(name=a,email=b,mobile=c,course=d).save()
+        return HttpResponse("<script>alert('Thanks for cantacting with us...');location.href='/user/contact/'</script>")
     return render(request,'user/contact.html',cdata)
 
 
@@ -70,7 +71,6 @@ def teacherlogin(request):
             request.session['username'] = str(y[0].name)
             request.session['department'] = str(y[0].department)
             request.session['department_id'] = str(y[0].department.id)
-            
             return HttpResponse("<script>location.href='/teacher/index/'</script>")
         else:
             return HttpResponse("<script>alert('your username or password is incorrect...');location.href='/user/teacherlogin/'</script>")
@@ -84,28 +84,28 @@ def successstory(request):
     sdata = session.objects.all().order_by('-id')
     pdata = placement.objects.all().order_by('-id')
 
-    if year is not int and depart is int :
-        year=sdata[0]
-        if depart is not None and year is not None:
-            pdata = placement.objects.filter(department=depart, session=year)
-        else:
-            pdata = placement.objects.all().order_by('-id')
-    elif depart is not int and year is int:
-        depart=ddata[0]
+    # if year is not int and depart is int :
+    #     year=sdata[0]
+    #     if depart is not None and year is not None:
+    #         pdata = placement.objects.filter(department=depart, session=year)
+    #     else:
+    #         pdata = placement.objects.all().order_by('-id')
+    # elif depart is not int and year is int:
+    #     depart=ddata[0]
+    #
+    #     if depart is not None and year is not None:
+    #         pdata = placement.objects.filter(department=depart, session=year)
+    #     else:
+    #         pdata = placement.objects.all().order_by('-id')
 
-        if depart is not None and year is not None:
-            pdata = placement.objects.filter(department=depart, session=year)
-        else:
-            pdata = placement.objects.all().order_by('-id')
-
-    # if depart is not None and year is None:
-    #     pdata = placement.objects.filter(department=depart)
-    # elif depart is None and year is not None:
-    #     pdata = placement.objects.filter(session=year)
-    # elif depart is not None and year is not None:
-    #     pdata = placement.objects.filter(department=depart, session=year)
-    # else:
-    #     pdata = placement.objects.all().order_by('-id')
+    if depart is not None and year is None:
+         pdata = placement.objects.filter(department=depart)
+    elif depart is None and year is not None:
+         pdata = placement.objects.filter(session=year)
+    elif depart is not None and year is not None:
+         pdata = placement.objects.filter(department=depart, session=year)
+    else:
+         pdata = placement.objects.all().order_by('-id')
 
 
     md={"cdata":ddata,"sdata":sdata,"pdata":pdata}

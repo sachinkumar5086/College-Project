@@ -1,0 +1,26 @@
+{% extends 'studentbase.html'%}
+{% load static %}
+{% block studentzone %}
+{% if not request.session.user %}
+<script>
+    alert('You have to login first..');
+    location.href="/user/signin/"
+</script>
+{% endif %}
+
+
+<div class="row py-4" id="pic" >
+    <div class="col-sm-6 mx-auto" style="background:#cee8e6; max-height:400px;">
+        <form method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <h3 class="text-center">Changer Your Picture</h3>
+                    Select Your Profile Picture
+                    <input type="file" name="fu" class="form-control"/><br/>
+                    <input type="password" name="opasswd" required placeholder="Enter Password" class="form-control"/>
+                    <input type="submit" value="Save" class=" btn bg-mycolor2 text-light mb-2"/>
+                </form>
+    </div>
+</div>
+
+
+{% endblock %}
