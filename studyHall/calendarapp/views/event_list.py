@@ -1,6 +1,6 @@
 from django.views.generic import ListView
-
 from calendarapp.models import Event
+from calendarapp.models.event_member import EventMember as user
 
 
 class AllEventsListView(ListView):
@@ -10,7 +10,7 @@ class AllEventsListView(ListView):
     model = Event
 
     def get_queryset(self):
-        return Event.objects.get_all_events(user=request.session['user'])
+        return Event.objects.get_all_events(user=user)
 
 
 class RunningEventsListView(ListView):
@@ -20,4 +20,4 @@ class RunningEventsListView(ListView):
     model = Event
 
     def get_queryset(self):
-        return Event.objects.get_running_events(user=request.session['user'])
+        return Event.objects.get_running_events(user=user)

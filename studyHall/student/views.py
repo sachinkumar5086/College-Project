@@ -32,9 +32,21 @@ def softwarekit(request):
     md={"sdata":x}
     return render(request,'student/softwarekit.html',md)
 def mytask(request):
-    x=giventask.objects.all().order_by('-id')
+    user = request.session.get('user')
+    department=request.session['department_id']
+    print(department)
+    x=giventask.objects.filter(department)
     md={"tdata":x}
     return render(request,'student/tasks.html',md)
+# user=request.session.get('user')
+#     batchid=request.session.get('batchid')
+#     if user:
+#         tdata=mytask.objects.filter(taskbatch=batchid)
+#         data=submittedtask.objects.filter(userid=user)
+#     md={"tdata":tdata,"data":data}
+#     return render(request,'student/tasks.html',md)
+
+
 def uprofile(request):
     user=request.session.get('user')
     udata=student.objects.filter(email=user)
@@ -43,40 +55,45 @@ def uprofile(request):
     md={"udata":udata}
     if request.method=="POST":
         if upd.passwd == oldpasswd:
-            if request.POST.get('name'):
-                upd.name = request.POST.get('name')
-                upd.save()
-                return HttpResponse("<script>alert('Your profile is updated successfully...');location.href='/student/uprofile/'</script>")
-            if request.POST.get('mobile'):
-                upd.mobile = request.POST.get('mobile')
-                upd.save()
-                return HttpResponse("<script>alert('Your profile is updated successfully...');location.href='/student/uprofile/'</script>")
-            if request.POST.get('passwd'):
-                upd.passwd = request.POST.get('passwd')
-                upd.save()
-                return HttpResponse("<script>alert('Your profile is updated successfully...');location.href='/student/uprofile/'</script>")
-            if request.FILES['fu']:
-                upd.profile= request.FILES['fu']
-                upd.save()
-                return HttpResponse("<script>alert('Your profile is updated successfully...');location.href='/student/uprofile/'</script>")
+            upd.name=request.POST.get('name')
+            upd.save()
+            upd.mobile=request.POST.get('mobile')
+            upd.save()
+            upd.passwd=request.POST.get('passwd')
+            upd.save()
+            upd.pic=request.FILES['fu']
+            upd.save()
+            # student(name=name , mobile=number, passwd=passwd, pic=profile)._do_update()
+            return HttpResponse("<script>alert('Your profile is updated successfully...');location.href='/student/uprofile/'</script>")
+
+
         else:
             return HttpResponse("<script>alert('wrong password....');location.href='/student/uprofile/'</script>")
+
+        # if upd.passwd == oldpasswd:
+        #     if request.POST.get('name'):
+        #
+        #         upd.name = request.POST.get('name')
+        #         upd.save()
+        #         return HttpResponse("<script>alert('Your profile is updated successfully...');location.href='/student/uprofile/'</script>")
+        #     if request.POST.get('mobile'):
+        #         upd.mobile = request.POST.get('mobile')
+        #         upd.save()
+        #         return HttpResponse("<script>alert('Your profile is updated successfully...');location.href='/student/uprofile/'</script>")
+        #     if request.POST.get('passwd'):
+        #         upd.passwd = request.POST.get('passwd')
+        #         upd.save()
+        #         return HttpResponse("<script>alert('Your profile is updated successfully...');location.href='/student/uprofile/'</script>")
+        #     if request.FILES['fu']:
+        #         upd.profile= request.FILES['fu']
+        #         upd.save()
+        #         return HttpResponse("<script>alert('Your profile is updated successfully...');location.href='/student/uprofile/'</script>")
+        # else:
+        #     return HttpResponse("<script>alert('wrong password....');location.href='/student/uprofile/'</script>")
             #signup(name=name,mobile=mobile,passwd=passwd,college=college,course=course,profile=picture,email=user).save()
         #return HttpResponse("<script>alert('Your profile is updated successfully...');location.href='/student/uprofile/'</script>")
     return render(request,'student/uprofile.html',md)
-def stask(request):
-    user=request.session.get('user')
-    if request.method=="POST":
-        tid=request.POST.get('tid')
-        title = request.POST.get('subject')
-        answer_file=request.FILES['fu']
-        x=submittedtask.objects.filter(tid=tid,userid=user).count()
-        if x==1:
-            return HttpResponse("<script>alert('This task is already submitted...');location.href='/student/tasks'</script>")
-        else:
-            submittedtask(title=subject,tid=tid,answer_file=answer_file,userid=user).save()
-            return  HttpResponse("<script>alert('Your task has been submitted successfully...');location.href='/student/tasks'</script>")
-    return render(request,'student/stask.html')
+
 def myliveclasses(request):
     department_id = request.session.get('department_id')
     semester_id = request.session.get('semester_id')
@@ -87,13 +104,13 @@ def stask(request):
     user=request.session.get('user')
     if request.method=="POST":
         tid=request.POST.get('tid')
-        title = request.POST.get('title')
+        subject = request.POST.get('subject')
         answer_file=request.FILES['fu']
         x=submittedtask.objects.filter(tid=tid,userid=user).count()
         if x==1:
             return HttpResponse("<script>alert('This task is already submitted...');location.href='/student/tasks'</script>")
         else:
-            submittedtask(title=title,tid=tid,answer_file=answer_file,userid=user).save()
+            submittedtask(subject=subject,id=tid,answer_file=answer_file,userid=user).save()
             return  HttpResponse("<script>alert('Your task has been submitted successfully...');location.href='/student/tasks'</script>")
     return render(request,'student/stask.html')
 def logout(request):
@@ -104,3 +121,11 @@ def logout(request):
         del request.session['username']
         return HttpResponse("<script>location.href='/user/index/'</script>")
     return render(request,'student/logout.html')
+def editphone(request):
+    return render(request,'student/editphone.html')
+def editname(request):
+    return render(request,'student/editname.html')
+def editpasswd(request):
+    return render(request,'student/editpasswd.html')
+def editpicture(request):
+    return render(request,'student/editpicture.html')

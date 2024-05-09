@@ -21,7 +21,7 @@
 
 </style>
   -->
-<div class="text-center fs-2">Student <b style="color:green;">Login</b></div><div class="row">
+<div class="text-center fs-2 text-light">Student <b style="color:green;">Login</b></div><div class="row">
 <div class="col-sm-6 mx-auto">
     <form method="post">
         {% csrf_token %}
@@ -32,12 +32,10 @@
                     <i class="input-group-text py-0">
                         <i class="fa-solid fa-envelope"></i>
                     </i>
-                    <input type="email" name="email" required placeholder="Enter Email ID*" class="form-control"/>
+                    <input type="email" name="email" placeholder="Enter Email ID*" class="form-control" required/>
                     </div>
                         </div>
-
              <div>
-
                     <div class="input-group">
                     <i class="input-group-text py-0">
                         <i class="fa-solid fa-key"></i>
