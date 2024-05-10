@@ -6,7 +6,7 @@
     alert('You have to login first..');
     location.href="/user/signin/"
     function SubmitTask(){
-           y= document.getElementById("task").innerHTML="Submitted";
+           document.getElementById("task").innerHTML="Submitted";
     }
 </script>
 {% endif %}
@@ -29,16 +29,16 @@
                     <a href="/{{x.task_file}}" target="_blank" class="btn btn-danger">Download <i class="fa-solid fa-download"></i></a>
                 </td>
                 <td>
-                    <form id="task" method="post" action="/student/stask/" enctype="multipart/form-data">
+                    <form method="post" action="/student/task/" enctype="multipart/form-data" onsubmit="SubmitTask()">
                         {% csrf_token %}
                         <input type="hidden" name="tid" value="{{x.id}}" />
                         <input type="hidden" name="subject" value="{{x.subject}}" />
                         <input type="file" name="fu"/>
-                        <input type="submit" value="Upload" class="btn btn-danger" onclick="SubmitTask()"/>
+                        <input type="submit" value="Upload" class="btn btn-danger"/>
                     </form>
                 </td>
                 <td>
-                    {{y}}
+                    <p id="task"></p>
                 </td>
             </tr>
             {% endfor %}

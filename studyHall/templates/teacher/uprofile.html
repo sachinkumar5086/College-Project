@@ -4,22 +4,9 @@
 <style>
     #frm
     {
-     display:none;
+   display:none;
     }
-    #prm
-    {
-     display:none;
-    }
-    #pic
-    {
-     display:none;
-    }
-    #nam
-    {
-     display:none;
-    }
-    #phone
-    {
+
      display:none;
     }
     .form-control
@@ -32,22 +19,54 @@
     {
     document.getElementById("frm").style.display="block"
     }
-    function demo1()
-    {
-    document.getElementById("prm").style.display="block"
+
+    function validateMobileNumber() {
+              var a =document.getElementById("mobile").value;
+              if (a==""){
+                document.getElementById("message").innerHTML="**Please fill mobile number";
+                return false;
+              }
+              if (isNaN(a)){
+                 document.getElementById("message").innerHTML="** Enter only numeric value";
+                 return false;
+              }
+              if (a.length<10){
+                 document.getElementById("message").innerHTML="** Mobile number must be 10 digit";
+                 return false;
+              }
+              if (a.length>10){
+                 document.getElementById("message").innerHTML="** Mobile number must be 10 digit";
+                 return false;
+              }
+              if ((a.charAt(0)!=9) && (a.charAt(0)!=8) && (a.charAt(0)!=7)){
+                 document.getElementById("message").innerHTML="** Invalid mobile number";
+                 return false;
+              }
     }
-    function demo2()
-    {
-    document.getElementById("pic").style.display="block"
-    }
-    function demo3()
-    {
-    document.getElementById("nam").style.display="block"
-    }
-    function demo4()
-    {
-    document.getElementById("phone").style.display="block"
-    }
+<!--    function validateMobileNumber() {-->
+<!--              var a =document.getElementById("mobile").value;-->
+<!--              if (a==""){-->
+<!--                document.getElementById("message").innerHTML="**Please fill mobile number";-->
+<!--                return false;-->
+<!--              }-->
+<!--              if (isNaN(a)){-->
+<!--                 document.getElementById("message").innerHTML="** Enter only numeric value";-->
+<!--                 return false;-->
+<!--              }-->
+<!--              if (a.length<10){-->
+<!--                 document.getElementById("message").innerHTML="** Mobile number must be 10 digit";-->
+<!--                 return false;-->
+<!--              }-->
+<!--              if (a.length>10){-->
+<!--                 document.getElementById("message").innerHTML="** Mobile number must be 10 digit";-->
+<!--                 return false;-->
+<!--              }-->
+<!--              if ((a.charAt(0)!=9) && (a.charAt(0)!=8) && (a.charAt(0)!=7)){-->
+<!--                 document.getElementById("message").innerHTML="** Invalid mobile number";-->
+<!--                 return false;-->
+<!--              }-->
+<!--    }-->
+
 </script>
 {% if not request.session.user %}
 <script>
@@ -65,15 +84,15 @@
         <div class="card mb-3">
   <div class="row g-0">
     <div class="col-md-4 p-3">
-      <img src="/{{j.profile}}" class="img-fluid rounded-start" style="max-height:180px;" alt="...">
+      <img src="/{{j.pic}}" class="img-fluid rounded-start" style="max-height:180px;" alt="...">
     </div>
     <div class="col-md-8">
       <div class="card-body">
         <p class="card-text" style="line-height:30px; font-size:16px;">
             <i class="fa-solid fa-user"></i> {{j.name}}<br/>
             <i class="fa-solid fa-phone"></i> {{j.mobile}}<br/>
-            <i class="fa-solid fa-city"></i> {{j.college}}<br/>
-            <i class="fa-solid fa-laptop"></i> {{j.course}}<br/>
+            <i class="fa-solid fa-city"></i> {{j.department}}<br/>
+             <b>Semester</b> - {{j.semester}}<br/>
             <a href="#" class="btn btn-primary text-light btn-sm" onclick="demo()">
                 Edit Profile <i class="fa-solid fa-pen-to-square"></i>
             </a>
@@ -86,6 +105,7 @@
         {% endfor %}
     </div>
 </div>
+
 
 <!--
 <div class="row py-4" id="frm" style="background:#cee8e6;">
@@ -111,80 +131,125 @@
 </div>
 -->
 <!--profile button-->
-<div class="row" id="frm">
-    <div class="col-sm-7 mx-auto">
-        <div class="row mx-auto" style="padding-left:12%; max-width:80%;">
-            <div class="col-lg-3 col-md-12 col-sm-12 py-2" >
-                <a href="#" class="btn btn-outline-dark btn-sm" onclick="demo1()">Password</a>
-            </div>
-            <div class="col-lg-3 col-md-12 col-sm-12 py-2" >
-                <a href="#" class="btn btn-outline-dark btn-sm" onclick="demo2()">Picture</a>
-            </div>
-            <div class="col-lg-3 col-md-12 col-sm-12 py-2" style="margin-left:-5%;">
-                <a href="#" class="btn btn-outline-dark btn-sm" onclick="demo3()">Name</a>
+<!--<div class="row" >-->
+<!--    <div class="col-sm-7 mx-auto">-->
+<!--        <div class="row mx-auto" style="padding-left:12%; max-width:80%;">-->
+<!--            <div class="col-lg-3 col-md-12 col-sm-12 py-2" >-->
+<!--                <a href="/student/editpasswd/" class="btn btn-outline-dark btn-sm" onclick="demo1()">Password</a>-->
+<!--            </div>-->
+<!--            <div class="col-lg-3 col-md-12 col-sm-12 py-2" >-->
+<!--                <a href="/student/editpicture/" class="btn btn-outline-dark btn-sm" onclick="demo2()">Picture</a>-->
+<!--            </div>-->
+<!--            <div class="col-lg-3 col-md-12 col-sm-12 py-2" style="margin-left:-5%;">-->
+<!--                <a href="/student/editname/" class="btn btn-outline-dark btn-sm" onclick="demo3()">Name</a>-->
 
-            </div>
-            <div class="col-lg-3 col-md-12 col-sm-12 py-2" style="margin-left:-5%;">
-                <a href="#" class="btn btn-outline-dark btn-sm" onclick="demo4()">Phone</a>
-            </div>
-        </div>
-    </div>
-</div>
+<!--            </div>-->
+<!--            <div class="col-lg-3 col-md-12 col-sm-12 py-2" style="margin-left:-5%;">-->
+<!--                <a href="/student/editphone/" class="btn btn-outline-dark btn-sm" onclick="demo4()">Phone</a>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</div>-->
 
 <!--password-->
 
-<div class="row py-4" id="prm" >
-    <div class="col-sm-6 mx-auto" style="background:#cee8e6; max-height:400px;">
-        <form method="post" enctype="multipart/form-data">
-                    {% csrf_token %}
-                    <h3 class="text-center">Changer your password</h3>
-                    <input type="password" name="opasswd" required placeholder="Enter Old Password" class="form-control"/>
-                    <input type="password" name="passwd" required placeholder="Enter New Password" class="form-control"/>
-                     <input type="submit" value="Save" class=" btn bg-mycolor2 text-light my-2"/>
-                </form>
-    </div>
-</div>
+<!--<div class="row py-4" id="prm" >-->
+<!--    <div class="col-sm-6 mx-auto" style="background:#cee8e6; max-height:400px;">-->
+<!--        <form method="post" enctype="multipart/form-data">-->
+<!--                    {% csrf_token %}-->
+<!--                    <h3 class="text-center">Changer your password</h3>-->
+<!--                    <input type="password" name="opasswd" required placeholder="Enter Old Password" class="form-control"/>-->
+<!--                    <input type="password" name="passwd" required placeholder="Enter New Password" class="form-control"/>-->
+<!--                     <input type="submit" value="Save" class=" btn bg-mycolor2 text-light my-2"/>-->
+<!--                </form>-->
+<!--    </div>-->
+<!--</div>-->
 
 <!--picture-->
-<div class="row py-4" id="pic" >
-    <div class="col-sm-6 mx-auto" style="background:#cee8e6; max-height:400px;">
-        <form method="post" enctype="multipart/form-data">
-                    {% csrf_token %}
-                    <h3 class="text-center">Changer Your Picture</h3>
-                    Select Your Profile Picture
-                    <input type="file" name="fu" class="form-control"/><br/>
-                    <input type="password" name="opasswd" required placeholder="Enter Password" class="form-control"/>
-                    <input type="submit" value="Save" class=" btn bg-mycolor2 text-light mb-2"/>
-                </form>
-    </div>
-</div>
+<!--<div class="row py-4" id="pic" >-->
+<!--    <div class="col-sm-6 mx-auto" style="background:#cee8e6; max-height:400px;">-->
+<!--        <form method="post" enctype="multipart/form-data">-->
+<!--                    {% csrf_token %}-->
+<!--                    <h3 class="text-center">Changer Your Picture</h3>-->
+<!--                    Select Your Profile Picture-->
+<!--                    <input type="file" name="fu" class="form-control"/><br/>-->
+<!--                    <input type="password" name="opasswd" required placeholder="Enter Password" class="form-control"/>-->
+<!--                    <input type="submit" value="Save" class=" btn bg-mycolor2 text-light mb-2"/>-->
+<!--                </form>-->
+<!--    </div>-->
+<!--</div>-->
 
 <!--name-->
-<div class="row py-4" id="nam" >
-    <div class="col-sm-6 mx-auto" style="background:#cee8e6; max-height:400px;">
-        <form method="post" enctype="multipart/form-data">
+<!--<div class="row py-4" id="nam" >-->
+<!--    <div class="col-sm-6 mx-auto" style="background:#cee8e6; max-height:400px;">-->
+<!--        <form method="post" enctype="multipart/form-data">-->
+<!--                    {% csrf_token %}-->
+<!--                    <h3 class="text-center">Changer Your Picture</h3>-->
+<!--                    Name-->
+<!--                    <input type="text" name="name" required placeholder="Name.." class="form-control"/>-->
+<!--                    <input type="password" name="opasswd" required placeholder="Enter Password" class="form-control"/>-->
+<!--                    <input type="submit" value="Save" class=" btn bg-mycolor2 text-light mb-2"/>-->
+<!--                </form>-->
+<!--    </div>-->
+<!--</div>-->
+
+<!--Phone-->
+<!--<div class="row py-4" id="phone" >-->
+<!--    <div class="col-sm-6 mx-auto" style="background:#cee8e6; max-height:400px;">-->
+<!--        <form method="post" enctype="multipart/form-data" onsubmit="return validateMobileNumber()">-->
+<!--                    {% csrf_token %}-->
+<!--                    <h3 class="text-center">Changer Your Phone Number</h3>-->
+<!--                    Mobile-->
+<!--                    <input type="text" name="mobile" id="mobile" value="" required placeholder="Whatsapp No..." class="form-control"/>-->
+<!--                    <span id="message" style="color:red;"></span>-->
+<!--                    <input type="password" name="opasswd" required placeholder="Enter Password" class="form-control"/>-->
+<!--                     <input type="submit" value="Save"  class=" btn bg-mycolor2 text-light mb-2"/>-->
+<!--                </form>-->
+<!--    </div>-->
+<!--</div>-->
+<div class="row py-4" id="frm">
+    <div class="col-sm-6 mx-auto" style="background:#e1dddd; max-height:400px;">
+        <form method="post" enctype="multipart/form-data" onsubmit="return validateMobileNumber()">
                     {% csrf_token %}
-                    <h3 class="text-center">Changer Your Picture</h3>
-                    Name
-                    <input type="text" name="name" required placeholder="Name.." class="form-control"/>
-                    <input type="password" name="opasswd" required placeholder="Enter Password" class="form-control"/>
-                    <input type="submit" value="Save" class=" btn bg-mycolor2 text-light mb-2"/>
+                    <h3 class="text-center txt-mycolor2">Update Your Profile</h3>
+                    <div class="row">
+                        <div class="col-lg-6 col-md-6 col-sm-12">
+                            <input type="text" name="name" required placeholder="Name.." class="form-control mt-3"/>
+                        </div>
+
+                        <div class="col-lg-6 col-md-12 col-sm-12 ">
+                            <input type="text" name="mobile" id="mobile" value="" placeholder="Whatsapp No..." class="form-control mt-3" required />
+                            <span id="message" style="color:red;"></span>
+                        </div>
+                        <div class="col-lg-6 col-md-12 col-sm-12 ">
+                            <input type="password" name="opasswd" required placeholder="Enter Old Password" class="form-control mt-3"/>
+                        </div>
+                        <div class="col-lg-6 col-md-12 col-sm-12 ">
+                           <input type="password" name="passwd" required placeholder="Enter New Password" class="form-control my-3"/>
+                        </div>
+                        <div class="col-lg-6 col-md-12 col-sm-12 text-center my-auto">
+                            Select your profile Picture:
+                        </div>
+                        <div class="col-lg-6 col-md-12 col-sm-12 ">
+                            <input type="file" name="fu" class="form-control"/>
+                        </div>
+                        <div>
+                            <input type="submit" value="Save" class=" btn bg-mycolor2 text-light my-2"/>
+                        </div>
+                    </div>
                 </form>
     </div>
 </div>
 
-<!--Phone-->
-<div class="row py-4" id="phone" >
-    <div class="col-sm-6 mx-auto" style="background:#cee8e6; max-height:400px;">
-        <form method="post" enctype="multipart/form-data">
-                    {% csrf_token %}
-                    <h3 class="text-center">Changer Your Phone Number</h3>
-                    Mobile
-                    <input type="text" name="mobile" required placeholder="Whatsapp No..." class="form-control"/>
-                    <input type="password" name="opasswd" required placeholder="Enter Password" class="form-control"/>
-                     <input type="submit" value="Save" class=" btn bg-mycolor2 text-light mb-2"/>
-                </form>
-    </div>
-</div>
+
+
+
+
+
+
+
+
+
+
 
 {% endblock %}

@@ -12,12 +12,11 @@ urlpatterns=[
     path('softwarekit/',views.softwarekit),
     path('tasks/',views.mytask),
     path('uprofile/',views.uprofile),
-    path('editphone/',views.editphone),
-    path('editname/',views.editname),
-    path('editpasswd/',views.editpasswd),
-    path('editpicture/',views.editpicture),
     path('liveclasses/', views.myliveclasses),
-    path('stask/',views.stask),
+    path('task/',views.stask),
+    path('subject/', views.MySubject),
+    path('attendance/', views.MyAttendance),
+    path('addmission/', views.addmissionForm),
     path('logout/', views.logout),
 
 
