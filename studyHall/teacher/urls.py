@@ -5,8 +5,9 @@ from . import views
 urlpatterns=[
     path('index/', views.index),
     path('', views.index),
-    path('lecturedepartment/', views.lectures),
-    path('lectures/',views.lecturesvideo),
+    path('lecturedepartment/', views.lecturesdepartment),
+    path('lectures/',views.lectures),
+    path('lecturesvideo/', views.lecturesvideo),
     path('notes/',views.enote),
     path('library/',views.library),
     path('softwarekit/',views.softwarekit),

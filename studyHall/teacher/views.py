@@ -9,18 +9,25 @@ def index(request):
 
     return render(request,'teacher/index.html')
 
-def lectures(request):
+def lecturesdepartment(request):
     department_id=request.session['department_id']
     cdata = semester.objects.filter().order_by('id')
     edata=department.objects.filter(id=department_id).order_by('id')
     md={"cdata":cdata,"edata":edata}
     return render(request,'teacher/lecturedepartment.html',md)
+def lectures(request):
+    department_id=request.session['department_id']
+    semester_id=request.session.get('semester_id')
+    cdata=mylectures.objects.filter(semester=semester_id,department=department_id).order_by('-id')
+    print(semester_id)
+    md={"cdata":cdata}
+    return render(request,'student/lectures.html',md)
 def lecturesvideo(request):
     department_id=request.session.get('department_id')
     semester_id=request.GET.get('semester_id')
     vdata=mylectures.objects.filter(semester=semester_id,department=department_id)
     md={"vdata":vdata}
-    return render(request,'teacher/lectures.html',md)
+    return render(request,'teacher/lecturesvideo.html',md)
 def enote(request):
     department_id=request.session.get('department_id')
     semester_id=request.session.get('semester_id')

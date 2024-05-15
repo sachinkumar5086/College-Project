@@ -121,11 +121,3 @@ def logout(request):
         del request.session['username']
         return HttpResponse("<script>location.href='/user/index/'</script>")
     return render(request,'student/logout.html')
-def editphone(request):
-    return render(request,'student/editphone.html')
-def editname(request):
-    return render(request,'student/editname.html')
-def editpasswd(request):
-    return render(request,'student/editpasswd.html')
-def editpicture(request):
-    return render(request,'student/editpicture.html')
