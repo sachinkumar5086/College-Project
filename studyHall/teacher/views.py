@@ -23,11 +23,19 @@ def lectures(request):
     md={"cdata":cdata}
     return render(request,'student/lectures.html',md)
 def lecturesvideo(request):
+<<<<<<< HEAD
     department_id=request.session.get('department_id')
     semester_id=request.GET.get('semester_id')
     vdata=mylectures.objects.filter(semester=semester_id,department=department_id)
     md={"vdata":vdata}
     return render(request,'teacher/lecturesvideo.html',md)
+=======
+    department_id = request.session.get('department_id')
+    semester_id = request.GET.get('semester_id')
+    vdata = mylectures.objects.filter(department=department_id,semester=semester_id)
+    md = {"vdata": vdata}
+    return render(request, 'teacher/lecturesvideo.html', md)
+>>>>>>> master
 def enote(request):
     department_id=request.session.get('department_id')
     semester_id=request.session.get('semester_id')
@@ -50,26 +58,23 @@ def uprofile(request):
     upd=teacher.objects.get(email=user)
     oldpasswd=request.POST.get('opasswd')
     md={"udata":udata}
-    if request.method=="POST":
+    if request.method == "POST":
         if upd.passwd == oldpasswd:
-            if request.POST.get('name'):
-                upd.name = request.POST.get('name')
-                upd.save()
-                return HttpResponse("<script>alert('Your profile is updated successfully...');location.href='/teacher/uprofile/'</script>")
-            if request.POST.get('mobile'):
-                upd.mobile = request.POST.get('mobile')
-                upd.save()
-                return HttpResponse("<script>alert('Your profile is updated successfully...');location.href='/teacher/uprofile/'</script>")
-            if request.POST.get('passwd'):
-                upd.passwd = request.POST.get('passwd')
-                upd.save()
-                return HttpResponse("<script>alert('Your profile is updated successfully...');location.href='/teacher/uprofile/'</script>")
-            if request.FILES['fu']:
-                upd.profile= request.FILES['fu']
-                upd.save()
-                return HttpResponse("<script>alert('Your profile is updated successfully...');location.href='/teacher/uprofile/'</script>")
+            upd.name = request.POST.get('name')
+            upd.save()
+            upd.mobile = request.POST.get('mobile')
+            upd.save()
+            upd.passwd = request.POST.get('passwd')
+            upd.save()
+            upd.pic = request.FILES['fu']
+            upd.save()
+            # student(name=name , mobile=number, passwd=passwd, pic=profile)._do_update()
+            return HttpResponse(
+                "<script>alert('Your profile is updated successfully...');location.href='/student/uprofile/'</script>")
+
+
         else:
-            return HttpResponse("<script>alert('wrong password....');location.href='/teacher/uprofile/'</script>")
+            return HttpResponse("<script>alert('wrong password....');location.href='/student/uprofile/'</script>")
             #signup(name=name,mobile=mobile,passwd=passwd,college=college,course=course,profile=picture,email=user).save()
         #return HttpResponse("<script>alert('Your profile is updated successfully...');location.href='/student/uprofile/'</script>")
     return render(request,'teacher/uprofile.html',md)

@@ -31,20 +31,6 @@ def softwarekit(request):
     x=mysoftware.objects.all().order_by('-id')
     md={"sdata":x}
     return render(request,'student/softwarekit.html',md)
-def mytask(request):
-    user = request.session.get('user')
-    department=request.session['department_id']
-    print(department)
-    x=giventask.objects.filter(department)
-    md={"tdata":x}
-    return render(request,'student/tasks.html',md)
-# user=request.session.get('user')
-#     batchid=request.session.get('batchid')
-#     if user:
-#         tdata=mytask.objects.filter(taskbatch=batchid)
-#         data=submittedtask.objects.filter(userid=user)
-#     md={"tdata":tdata,"data":data}
-#     return render(request,'student/tasks.html',md)
 
 
 def uprofile(request):
@@ -100,19 +86,48 @@ def myliveclasses(request):
     data=liveclass.objects.filter(department=department_id,semester=semester_id)
     md={"data":data}
     return render(request,'student/liveclasses.html',md)
+
+def mytask(request):
+    user = request.session.get('user')
+    department= request.session.get('department_id')
+    semester = request.session.get('semester_id')
+    x=giventask.objects.filter(department=department,semester=semester)
+    md={"tdata":x}
+    return render(request,'student/tasks.html',md)
+# user=request.session.get('user')
+#     batchid=request.session.get('batchid')
+#     if user:
+#         tdata=mytask.objects.filter(taskbatch=batchid)
+#         data=submittedtask.objects.filter(userid=user)
+#     md={"tdata":tdata,"data":data}
+#     return render(request,'student/tasks.html',md)
+
 def stask(request):
     user=request.session.get('user')
     if request.method=="POST":
         tid=request.POST.get('tid')
         subject = request.POST.get('subject')
         answer_file=request.FILES['fu']
-        x=submittedtask.objects.filter(tid=tid,userid=user).count()
+        x=submittedtask.objects.filter(taskid=tid,userid=user).count()
+        print(x)
         if x==1:
             return HttpResponse("<script>alert('This task is already submitted...');location.href='/student/tasks'</script>")
         else:
-            submittedtask(subject=subject,id=tid,answer_file=answer_file,userid=user).save()
+            submittedtask(subject=subject,taskid=tid,answer_file=answer_file,userid=user).save()
             return  HttpResponse("<script>alert('Your task has been submitted successfully...');location.href='/student/tasks'</script>")
-    return render(request,'student/stask.html')
+    return render(request,'student/task.html')
+
+def MySubject(request):
+    department = request.session.get('department_id')
+    semester = request.session.get('semester_id')
+    x=subject.objects.filter(department=department,semester=semester)
+    md={"sdata":x}
+    return render(request,'student/subject.html',md)
+
+def MyAttendance(request):
+    return render(request,'student/attendance.html')
+def addmissionForm(request):
+    return render(request,'student/addmission.html')
 def logout(request):
     user=request.session.get('user')
     if user:
