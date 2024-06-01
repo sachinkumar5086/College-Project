@@ -1,6 +1,6 @@
-{% extends 'studentbase.html'%}
+{% extends 'teacherbase.html'%}
 {% load static %}
-{% block studentzone %}
+{% block teacherzone %}
 {% if not request.session.user %}
 <script>
     alert('You have to login first..');

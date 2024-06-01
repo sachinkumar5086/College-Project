@@ -1,6 +1,6 @@
-{% extends 'studentbase.html' %}
+{% extends 'teacherbase.html' %}
 
-{% block studentzone %}
+{% block teacherzone %}
 {% if not request.session.user %}
 <script>
   alert('You have to login first..');
@@ -40,7 +40,7 @@
                 </a>
             </div>
             <div class="col-lg-3 col-md-4 col-sm-12 my-2">
-                <a href="/student/notes/">
+                <a href="/teacher/notesdepartment/">
                   <p class="dash py-5 fs-4">
                       <i class="fa-solid fa-plus"></i><br/>
                        E-Notes
@@ -48,7 +48,7 @@
                 </a>
             </div>
             <div class="col-lg-3 col-md-4 col-sm-12 my-2">
-                <a href="/student/tasks/">
+                <a href="/teacher/tasks/">
                   <p class="dash py-5 fs-4">
                       <i class="fa-solid fa-plus"></i><br/>
                       Task
@@ -68,7 +68,7 @@
             </div>
             -->
                          <div class="col-lg-3 col-md-4 col-sm-12 my-2">
-                 <a href="/student/library/" >
+                 <a href="/teacher/subject/" >
                    <p class="dash py-5 fs-4">
                       <i class="fa-solid fa-key"></i><br/>
                       My Subjects
@@ -85,7 +85,7 @@
                 </a>
             </div>
             <div class="col-lg-3 col-md-4 col-sm-12 my-2">
-                <a href="/student/softwarekit/">
+                <a href="/teacher/softwarekit/">
                   <p class="dash py-5 fs-4">
                      <i class="fa-solid fa-download"></i><br/>
                       Software Kit
@@ -101,7 +101,7 @@
                    </a>
             </div>
              <div class="col-lg-3 col-md-4 col-sm-12 my-2">
-                 <a href="/student/library/" >
+                 <a href="/teacher/library/" >
                    <p class="dash py-5 fs-4">
                       <i class="fa-solid fa-book"></i><br/>
                       Library
@@ -109,16 +109,7 @@
                    </a>
             </div>
              <div class="col-lg-3 col-md-4 col-sm-12 my-2">
-                 <a href="/student/library/" >
-                   <p class="dash py-5 fs-4">
-
-                      <i class="fa-regular fa-file"></i><br/>
-                      Addmision Form
-                   </p>
-                   </a>
-            </div>
-             <div class="col-lg-3 col-md-4 col-sm-12 my-2">
-                 <a href="/student/library/" >
+                 <a href="/teacher/attendence/" >
                    <p class="dash py-5 fs-4">
                       <i class="fa-solid fa-user-check"></i><br/>
                      My Attendance

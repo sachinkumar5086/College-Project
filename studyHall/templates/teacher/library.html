@@ -1,6 +1,13 @@
-{% extends 'studentbase.html' %}
-
+{% extends 'studentbase.html'%}
+{% load static %}
 {% block studentzone %}
-<h3>this is student library
-</h3>
+{% if not request.session.user %}
+<script>
+    alert('You have to login first..');
+    location.href="/user/signin/"
+</script>
+{% endif %}
+<div class="text-center fs-2 mt-2">
+     My<B class="txt-mycolor1"> Library</B>
+</div>
 {% endblock %}

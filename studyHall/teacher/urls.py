@@ -8,11 +8,14 @@ urlpatterns=[
     path('lecturedepartment/', views.lecturesdepartment),
     path('lectures/',views.lectures),
     path('lecturesvideo/', views.lecturesvideo),
-    path('notes/',views.enote),
+    path('notesdepartment/', views.notedepartment),
+    path('notes/',views.enotes),
     path('library/',views.library),
     path('softwarekit/',views.softwarekit),
     path('tasks/',views.mytask),
     path('uprofile/',views.uprofile),
     path('liveclasses/', views.myliveclasses),
     path('stask/',views.stask),
+    path('subject/',views.MySubject),
+    path('attendence/',views.myAttendence)
 ]

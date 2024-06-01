@@ -5,11 +5,13 @@
 <script>
     alert('You have to login first..');
     location.href="/user/signin/"
+</script>
+{% endif %}
+<script>
     function SubmitTask(){
            document.getElementById("task").innerHTML="Submitted";
     }
 </script>
-{% endif %}
 <div class="text-center fs-2 mt-2">
      Task<B class="txt-mycolor1"> & </B>Asignment
 </div>
@@ -29,7 +31,7 @@
                     <a href="/{{x.task_file}}" target="_blank" class="btn btn-danger">Download <i class="fa-solid fa-download"></i></a>
                 </td>
                 <td>
-                    <form method="post" action="/student/task/" enctype="multipart/form-data" onsubmit="SubmitTask()">
+                    <form method="post" action="/student/stask/" enctype="multipart/form-data" onsubmit="SubmitTask()">
                         {% csrf_token %}
                         <input type="hidden" name="tid" value="{{x.id}}" />
                         <input type="hidden" name="subject" value="{{x.subject}}" />
@@ -38,7 +40,7 @@
                     </form>
                 </td>
                 <td>
-                    <p id="task"></p>
+
                 </td>
             </tr>
             {% endfor %}
@@ -54,7 +56,7 @@
             </tr>
             {% for i in data %}
             <tr>
-                <td>{{i.title}}</td>
+                <td>{{i.subject}}</td>
                 <td>{{i.marks}}</td>
             </tr>
             {% endfor %}

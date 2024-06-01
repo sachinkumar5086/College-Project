@@ -92,7 +92,9 @@ def mytask(request):
     department= request.session.get('department_id')
     semester = request.session.get('semester_id')
     x=giventask.objects.filter(department=department,semester=semester)
-    md={"tdata":x}
+    data = submittedtask.objects.filter(userid=user)
+
+    md={"tdata":x,"data":data}
     return render(request,'student/tasks.html',md)
 # user=request.session.get('user')
 #     batchid=request.session.get('batchid')
@@ -109,13 +111,12 @@ def stask(request):
         subject = request.POST.get('subject')
         answer_file=request.FILES['fu']
         x=submittedtask.objects.filter(taskid=tid,userid=user).count()
-        print(x)
         if x==1:
             return HttpResponse("<script>alert('This task is already submitted...');location.href='/student/tasks'</script>")
         else:
             submittedtask(subject=subject,taskid=tid,answer_file=answer_file,userid=user).save()
             return  HttpResponse("<script>alert('Your task has been submitted successfully...');location.href='/student/tasks'</script>")
-    return render(request,'student/task.html')
+    return render(request,'student/stask.html')
 
 def MySubject(request):
     department = request.session.get('department_id')
