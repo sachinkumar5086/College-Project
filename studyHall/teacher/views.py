@@ -19,7 +19,6 @@ def lectures(request):
     department_id=request.session['department_id']
     department=request.session['department']
     semester_id=request.GET.get('semester_id')
-    cdata=mylectures.objects.filter(semester=semester_id,department=department).order_by('-id')
     sdata=subject.objects.filter(semester=semester_id,department=department_id)
     cdata = mylectures.objects.filter(semester=semester_id, department=department).order_by('-id')
     if request.method == "POST":
@@ -33,9 +32,8 @@ def lectures(request):
     md={"cdata":cdata,"sdata":sdata}
     return render(request,'teacher/lectures.html',md)
 def lecturesvideo(request):
-    subject_id=request.GET.get('subject_id')
-    print(subject_id)
-    vdata=mylectures.objects.filter(id=subject_id)
+    subject_name=request.GET.get('subject_name')
+    vdata=mylectures.objects.filter(subject=subject_name).order_by('-id')
     md={"vdata":vdata}
     return render(request,'teacher/lecturesvideo.html',md)
     # department_id = request.session.get('department_id')
@@ -51,8 +49,20 @@ def notedepartment(request):
     edata = department.objects.filter(id=department_id).order_by('id')
     md = {"cdata":cdata,"edata":edata}
     return render(request, 'teacher/notesdepartment.html', md)
-def enotes(request):
-    return render(request,'teacher/notes.html')
+def notesubject(request):
+    semester=request.GET.get('semester_id')
+    department_id=request.session['department_id']
+    sdata = subject.objects.filter(semester=semester, department=department_id)
+    md={"sdata":sdata}
+    return render(request,'teacher/notesubject.html',md)
+def note(request):
+    subject_id=request.GET.get('subject_id')
+    department_id=request.session['department_id']
+    sdata=subject.objects.filter(id=subject_id)
+    print(sdata)
+    ndata = enotes.objects.filter(subject=subject_id,department=department_id).order_by('-id')
+    md={"ndata":ndata,"sdata":sdata}
+    return render(request,'teacher/notes.html',md)
 def library(request):
     return render(request,'teacher/library.html')
 def softwarekit(request):

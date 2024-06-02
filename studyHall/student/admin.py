@@ -36,10 +36,10 @@ class placementAdmin(admin.ModelAdmin):
 admin.site.register(placement,placementAdmin)
 
 class mylecturesAdmin(admin.ModelAdmin):
-    list_display = ('id','subject','department','semester','vlink','thumbnail','video_description','added_date')
+    list_display = ('id','subject','department','semester','vlink','video_description','added_date')
 admin.site.register(mylectures,mylecturesAdmin)
 class enotesAdmin(admin.ModelAdmin):
-    list_display = ('id','subject','note_pic','notes_pdf','department','semester','added_date')
+    list_display = ('id','subject','description','notes_pdf','department','semester','added_date')
 admin.site.register(enotes,enotesAdmin)
 
 class giventaskAdmin(admin.ModelAdmin):
@@ -57,7 +57,7 @@ class teacherAdmin(admin.ModelAdmin):
 admin.site.register(teacher,teacherAdmin)
 
 class subjectAdmin(admin.ModelAdmin):
-    list_display = ('id','subject_code','subject_name','department','semester','teacher','date')
+    list_display = ('id','subject_code','subject_name','department','semester','teacher','thumbnail','date')
 admin.site.register(subject,subjectAdmin)
 
 class signUpAdmin(admin.ModelAdmin):

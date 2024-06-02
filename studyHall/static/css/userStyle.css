@@ -1,3 +1,4 @@
+
 :root
         {
         --bgcolor:black;
@@ -9,17 +10,13 @@
         --txtcolor2:#2a6171;
         --txtcolor3:#008000;
         --txtcolor4:white;
-
         }
 
     .bg-mycolorDark{
             background:var(--bgcolor) ! important;
             color: var(--txtcolor4) ! important;
             }
-    b{
-            color:green ! important; }
 
-            color:var(--txtcolor4) ! important;}
 
     .bg-mycolor1
         {
@@ -44,7 +41,6 @@
     .txt-mycolor3{
                 color:var(--txtcolor3) !important;
                 }
-
     .txt-mycolorWhite{
                 color:var(--txtcolor4) !important;
                 }

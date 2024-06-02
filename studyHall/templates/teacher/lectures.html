@@ -69,12 +69,12 @@
     <div class="col-sm-10 mx-auto">
         <div class="row">
             <!--video category-->
-            {% for x in cdata %}
+            {% for x in sdata%}
             <div class="col-lg-3 col-md-4 col-sm-12">
-                <div class="card">
-                    <a href="/teacher/lecturesvideo?subject_id={{x.id}}" ><img src="/{{x.thumbnail}}" style="height:145px;" class="card-image-top"></a>
+                <div class="card text-center">
+                    <a href="/teacher/lecturesvideo?subject_name={{x.subject_name}}" ><img src="/{{x.thumbnail}}" style="height:145px;" class="card-image-top img-fluid"></a>
                     <div class="card-body text-center">
-                        <a href="/teacher/lecturesvideo?subject_id={{x.id}}" style="text-decoration:none;color:grey;"> <h4>{{x.subject}}</h4> </a>
+                        <a href="/teacher/lecturesvideo?subject_name={{x.subject_name}}" style="text-decoration:none;color:grey;"> <h4>{{x.subject_name}}</h4> </a>
                     </div>
                 </div>
             </div>

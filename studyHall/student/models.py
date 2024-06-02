@@ -60,6 +60,7 @@ class subject(models.Model):
     department=models.ForeignKey(department,on_delete=models.CASCADE)
     semester=models.ForeignKey(semester,on_delete=models.CASCADE)
     teacher=models.ForeignKey(teacher,on_delete=models.CASCADE)
+    thumbnail = models.ImageField(upload_to='static/video', null=True)
     date=models.DateField(null=True)
     def __str__(self):
         return self.subject_name
@@ -92,14 +93,13 @@ class mylectures(models.Model):
     department = models.CharField(max_length=100,null=True)
     semester = models.CharField(max_length=100,null=True)
     vlink = models.CharField(max_length=300, null=True)
-    thumbnail = models.ImageField(upload_to='static/video', null=True)
     video_description = models.TextField(null=True)
     added_date = models.DateField(null=True)
 
 
 class enotes(models.Model):
     subject = models.ForeignKey(subject, on_delete=models.CASCADE, null=True)
-    note_pic = models.ImageField(upload_to='static/enotes', null=True)
+    description=models.CharField(max_length=300,null=True)
     notes_pdf = models.FileField(upload_to='static/pdf', null=True)
     department = models.ForeignKey(department, on_delete=models.CASCADE, null=True)
     semester = models.ForeignKey(semester, on_delete=models.CASCADE, null=True)

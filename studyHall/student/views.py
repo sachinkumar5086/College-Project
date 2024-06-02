@@ -24,7 +24,7 @@ def enote(request):
     semester_id=request.session.get('semester_id')
     ndata = enotes.objects.filter(department=department_id,semester=semester_id)
     md = {"ndata": ndata}
-    return render(request, 'student/notes.html', md)
+    return render(request, 'student/notesubject.html', md)
 def library(request):
     return render(request,'student/library.html')
 def softwarekit(request):
