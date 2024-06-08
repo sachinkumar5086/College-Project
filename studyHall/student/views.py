@@ -6,25 +6,35 @@ from .models import *
 def index(request):
 
     return render(request,'student/index.html')
-
 def lectures(request):
     department_id=request.session['department_id']
-    semester_id=request.session.get('semester_id')
-    cdata=mylectures.objects.filter(semester=semester_id,department=department_id).order_by('-id')
-    md={"cdata":cdata}
+    department=request.session['department']
+    semester_id=request.session['semester_id']
+    sdata=subject.objects.filter(semester=semester_id,department=department_id)
+    cdata = mylectures.objects.filter(semester=semester_id,department=department).order_by('-id')
+    md={"cdata":cdata,"sdata":sdata}
     return render(request,'student/lectures.html',md)
 def lecturesvideo(request):
-    department_id=request.session.get('department_id')
-    subject_id=request.GET.get('subject_id')
-    vdata=mylectures.objects.filter(subject=subject_id,department=department_id)
+    subject_name=request.GET.get('subject_name')
+    vdata=mylectures.objects.filter(subject=subject_name).order_by('-id')
     md={"vdata":vdata}
     return render(request,'student/lecturesvideo.html',md)
-def enote(request):
-    department_id=request.session.get('department_id')
-    semester_id=request.session.get('semester_id')
-    ndata = enotes.objects.filter(department=department_id,semester=semester_id)
-    md = {"ndata": ndata}
-    return render(request, 'student/notesubject.html', md)
+
+def notesubject(request):
+    semester=request.session['semester_id']
+    department_id=request.session['department_id']
+    department_name=department.objects.filter(id=department_id)
+    sdata = subject.objects.filter(semester=semester,department=department_id)
+    md={"sdata":sdata}
+    return render(request,'student/notesubject.html',md)
+def note(request):
+    subject_id=request.GET.get('subject_id')
+    semester=request.session['semester_id']
+    department_id=request.session['department_id']
+    sdata=subject.objects.filter(id=subject_id).order_by('-id')
+    ndata = enotes.objects.filter(subject=subject_id,department=department_id).order_by('-id')
+    md={"ndata":ndata,"sdata":sdata}
+    return render(request,'student/notes.html',md)
 def library(request):
     return render(request,'student/library.html')
 def softwarekit(request):
@@ -105,15 +115,21 @@ def mytask(request):
 #     return render(request,'student/tasks.html',md)
 
 def stask(request):
-    user=request.session.get('user')
+    user=request.session.get('student_ID')
     if request.method=="POST":
         tid=request.POST.get('tid')
         subject = request.POST.get('subject')
         answer_file=request.FILES['fu']
         x=submittedtask.objects.filter(taskid=tid,userid=user).count()
         if x==1:
+            y = giventask.objects.filter(id=tid)
+            print(y)
+            y.status = request.POST.get('status')
+
             return HttpResponse("<script>alert('This task is already submitted...');location.href='/student/tasks'</script>")
         else:
+            y=giventask.objects.filter(id=tid)
+            y.status=request.POST.get('status')
             submittedtask(subject=subject,taskid=tid,answer_file=answer_file,userid=user).save()
             return  HttpResponse("<script>alert('Your task has been submitted successfully...');location.href='/student/tasks'</script>")
     return render(request,'student/stask.html')

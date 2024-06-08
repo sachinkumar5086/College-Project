@@ -7,9 +7,60 @@
     location.href="/user/signin/"
 </script>
 {% endif %}
-<div class="text-center fs-2 mt-2">
-     software<B class="txt-mycolor1"> Kit</B>
+<style>
+    #frm
+    {
+   display:none;
+    }
+</style>
+<script>
+    function demo()
+    {
+    document.getElementById("frm").style.display="block"
+    }
+</script>
+<div class="row my-2">
+    <div class="col-lg-6 col-md-6 col-sm-12 fs-2 text-center" >Software<B class="txt-mycolor1"> Kit</B></div>
+    <div class="col-lg-6 col-md-6 col-sm-12 fs-2 text-center" >
+        <a href="#" class="btn btn-primary text-light btn-sm" onclick="demo()">
+            Add New Softwares<i class="fa-solid fa-plus"></i>
+        </a>
+   </div>
 </div>
+<div class="row bg-dark text-light my-2">
+    <div class="col-sm-12 fs-2 text-center" >Added Softwares</div>
+</div>
+<div class="row py-4" id="frm">
+    <div class="col-sm-6 mx-auto" style="background:#e1dddd; max-height:400px;">
+        <form method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <h3 class="text-center txt-mycolor2">Add New Software</h3>
+                    <div class="row">
+                        <div class="col-lg-6 col-md-6 col-sm-12">Software Name:
+                            <input type="text" name="title" value="" placeholder="Software Name">
+                        </div>
+
+                        <div class="col-lg-6 col-md-12 col-sm-12 mb-3">Add Link:
+                            <input type="text" name="link" id="link" value="" placeholder="Software Link" class="form-control " required />
+                        </div>
+                        <div class="col-lg-6 col-md-12 col-sm-12 mb-3">Add Description:
+                            <input type="text" name="desc" id="description" value="" placeholder="Add description" class="form-control " required />
+                        </div>
+
+                        <div class="col-lg-6 col-md-12 col-sm-12 ">Select date:
+                            <input type="date" name="date" class="form-control"/>
+                        </div>
+                        <div class="col-lg-6 col-md-12 col-sm-12 ">Select Thumbnail:
+                            <input type="file" name="pic" class="form-control"/>
+                        </div>
+                        <div>
+                            <input type="submit" value="Save" class=" btn bg-mycolor2 text-light my-2"/>
+                        </div>
+                    </div>
+                </form>
+    </div>
+</div>
+
 <div class="row">
      <div class="col-sm-6 mx-auto">
           <!--card start-->

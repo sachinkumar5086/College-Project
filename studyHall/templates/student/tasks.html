@@ -35,13 +35,16 @@
                         {% csrf_token %}
                         <input type="hidden" name="tid" value="{{x.id}}" />
                         <input type="hidden" name="subject" value="{{x.subject}}" />
+                        <input type="hidden" name="status" value="Submitted" />
                         <input type="file" name="fu"/>
                         <input type="submit" value="Upload" class="btn btn-danger"/>
                     </form>
                 </td>
-                <td>
 
+                <td>
+                    {{x.status}}
                 </td>
+
             </tr>
             {% endfor %}
         </table>

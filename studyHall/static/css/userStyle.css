@@ -10,11 +10,11 @@
         --txtcolor2:#2a6171;
         --txtcolor3:#008000;
         --txtcolor4:white;
+        --txtbrown:rgb(99, 3, 54);
         }
 
     .bg-mycolorDark{
             background:var(--bgcolor) ! important;
-            color: var(--txtcolor4) ! important;
             }
 
 
@@ -44,6 +44,9 @@
     .txt-mycolorWhite{
                 color:var(--txtcolor4) !important;
                 }
+    .txt-brown{
+               color:var(--txtbrown) !important;
+    }
     h2{
             font-family:Arial, Helvetica, sans-serif;
             }

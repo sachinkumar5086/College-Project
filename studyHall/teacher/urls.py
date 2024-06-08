@@ -18,5 +18,6 @@ urlpatterns=[
     path('liveclasses/', views.myliveclasses),
     path('stask/',views.stask),
     path('subject/',views.MySubject),
-    path('attendence/',views.myAttendence)
+    path('attendence/',views.myAttendence),
+    path('logout/', views.logout),
 ]

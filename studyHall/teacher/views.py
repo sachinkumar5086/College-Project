@@ -52,14 +52,21 @@ def notedepartment(request):
 def notesubject(request):
     semester=request.GET.get('semester_id')
     department_id=request.session['department_id']
+    department_name=department.objects.filter(id=department_id)
     sdata = subject.objects.filter(semester=semester, department=department_id)
+    if request.method == "POST":
+        subject_name=request.POST.get('subject')
+        desc=request.POST.get('desc')
+        pdf=request.FILES['note']
+        date=request.POST.get('date')
+        enotes(subject=subject_name,description=desc,notes_pdf=pdf,added_date=date,department=department_name,semester=semester).save()
+        return HttpResponse("<script>alert('E-note is added successfully...');location.href='/teacher/notesubject/'</script>")
     md={"sdata":sdata}
     return render(request,'teacher/notesubject.html',md)
 def note(request):
     subject_id=request.GET.get('subject_id')
     department_id=request.session['department_id']
     sdata=subject.objects.filter(id=subject_id)
-    print(sdata)
     ndata = enotes.objects.filter(subject=subject_id,department=department_id).order_by('-id')
     md={"ndata":ndata,"sdata":sdata}
     return render(request,'teacher/notes.html',md)
@@ -67,6 +74,14 @@ def library(request):
     return render(request,'teacher/library.html')
 def softwarekit(request):
     x=mysoftware.objects.all().order_by('-id')
+    if request.method=="POST":
+        title=request.POST.get('title')
+        link=request.POST.get('link')
+        desc=request.POST.get('desc')
+        date=request.POST.get('date')
+        pic=request.FILES['pic']
+        mysoftware(software_title=title,link=link,software_description=desc,software_date=date,software_picture=pic).save()
+        return HttpResponse("<script>alert('Software is added successfully...');location.href='/student/softwarekit/'</script>")
     md={"sdata":x}
     return render(request,'teacher/softwarekit.html',md)
 
@@ -136,8 +151,17 @@ def myliveclasses(request):
     return render(request,'teacher/liveclasses.html',md)
 def MySubject(request):
     department = request.session.get('department_id')
-    x=subject.objects.filter(department=department)
+    teacher=request.session['user']
+    x=subject.objects.filter(department=department,teacher=teacher)
     md={"sdata":x}
     return render(request,'teacher/subject.html',md)
 def myAttendence(request):
     return render(request,'teacher/attendence.html')
+def logout(request):
+    user=request.session.get('user')
+    if user:
+        del request.session['user']
+        del request.session['userpic']
+        del request.session['username']
+        return HttpResponse("<script>location.href='/user/index/'</script>")
+    return render(request,'teacher/logout.html')

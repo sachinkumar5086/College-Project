@@ -98,11 +98,11 @@ class mylectures(models.Model):
 
 
 class enotes(models.Model):
-    subject = models.ForeignKey(subject, on_delete=models.CASCADE, null=True)
+    subject = models.CharField(max_length=200,null=True)
     description=models.CharField(max_length=300,null=True)
     notes_pdf = models.FileField(upload_to='static/pdf', null=True)
-    department = models.ForeignKey(department, on_delete=models.CASCADE, null=True)
-    semester = models.ForeignKey(semester, on_delete=models.CASCADE, null=True)
+    department = models.CharField(max_length=100,null=True)
+    semester = models.CharField(max_length=100,null=True)
     added_date = models.DateField(null=True)
 
 
@@ -110,6 +110,7 @@ class giventask(models.Model):
     department = models.ForeignKey(department, on_delete=models.CASCADE, null=True)
     semester = models.ForeignKey(semester, on_delete=models.CASCADE, null=True)
     subject = models.ForeignKey(subject, on_delete=models.CASCADE, null=True)
+    status=models.CharField(max_length=100,null=True , default='Pending')
     task_file = models.FileField(upload_to='static/task', null=True)
     added_date = models.DateField(null=True)
 
@@ -119,7 +120,6 @@ class submittedtask(models.Model):
     answer_file = models.FileField(upload_to='static/submittedtask', null=True)
     taskid = models.CharField(max_length=20, null=True)
     userid = models.CharField(max_length=200, null=True)
-    status=models.CharField(max_length=100,null=True ,default='Pending')
     marks = models.CharField(max_length=200, null=True)
     submit_date = models.DateField(null=True)
     marks_date = models.DateField(null=True)

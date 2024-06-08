@@ -19,16 +19,17 @@
     document.getElementById("frm").style.display="block"
     }
 </script>
-<div class="text-center fs-2 my-2">
-     My<B class="txt-mycolor1"> Lecture Subjects</B>
-</div>
-<div class="row bg-dark text-light my-2">
-    <div class="col-lg-6 col-md-6 col-sm-12 fs-2" >Added Lectures</div>
+<div class="row my-2">
+    <div class="col-lg-6 col-md-6 col-sm-12 fs-2 text-center" >Lecture<B class="txt-mycolor1"> Videos</B></div>
     <div class="col-lg-6 col-md-6 col-sm-12 fs-2 text-center" >
         <a href="#" class="btn btn-primary text-light btn-sm" onclick="demo()">
             Add New Lectures<i class="fa-solid fa-plus"></i>
         </a>
    </div>
+</div>
+
+<div class="row bg-dark text-light my-2">
+    <div class="col-sm-12 fs-2 text-center" >Added Lectures</div>
 </div>
 <div class="row py-4" id="frm">
     <div class="col-sm-6 mx-auto" style="background:#e1dddd; max-height:400px;">
@@ -51,9 +52,6 @@
                             <input type="text" name="desc" id="description" value="" placeholder="Add description" class="form-control " required />
                         </div>
 
-                        <div class="col-lg-6 col-md-12 col-sm-12 ">Select Thumbnail:
-                            <input type="file" name="thumbnail" class="form-control"/>
-                        </div>
                         <div class="col-lg-6 col-md-12 col-sm-12 ">Select date:
                             <input type="date" name="date" class="form-control"/>
                         </div>

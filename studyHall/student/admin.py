@@ -43,10 +43,10 @@ class enotesAdmin(admin.ModelAdmin):
 admin.site.register(enotes,enotesAdmin)
 
 class giventaskAdmin(admin.ModelAdmin):
-    list_display = ('id','department','semester','subject','task_file','added_date')
+    list_display = ('id','department','semester','subject','status','task_file','added_date')
 admin.site.register(giventask,giventaskAdmin)
 class  submittedtaskAdmin(admin.ModelAdmin):
-    list_display = ('id','subject','answer_file','taskid','userid','status','marks','submit_date','marks_date')
+    list_display = ('id','subject','answer_file','taskid','userid','marks','submit_date','marks_date')
 admin.site.register(submittedtask,submittedtaskAdmin)
 class sliderAdmin(admin.ModelAdmin):
     list_display = ('id','slider_pic')
