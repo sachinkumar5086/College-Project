@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Title</title>
+    <link href="{% static 'css/bootstrap.css'%}" rel="stylesheet"/>
+    <link href="{% static 'css/all.css'%}" rel="stylesheet"/>
+    <link href="{% static 'css/userStyle.css'%}" rel="stylesheet"/>
+    <link href="{% static 'css/Validation.js'%}" rel="stylesheet"/>
+
+    <style>
+
+        :root
+        {
+        --bgcolor1:#f34573;
+        --bgcolor2:#2a6171;
+        --txtcolor1:#f34573;
+        --txtcolor2:#2a6171;
+        }
+
+    .bg-mycolor2
+        {
+         background:var(--bgcolor2) !important;
+        }
+
+    </style>
+</head>
+<body>
+<div class="container-fluid">
+    <div class="row menu">
+        <div class="col-sm-12 px-0 mx-0">
+            <!--start menu-->
+            <nav class="navbar navbar-dark bg-dark px-0 mx-0">
+  <div class="container-fluid">
+    <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasDarkNavbar" aria-controls="offcanvasDarkNavbar" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <a class="navbar-brand fs-2 " href="#">Study Hall<b class="txt-mycolor1"> College<i class="fa-solid fa-graduation-cap"></i></b></a>
+
+    <div class="offcanvas offcanvas-start text-bg-dark" tabindex="-1" id="offcanvasDarkNavbar" aria-labelledby="offcanvasDarkNavbarLabel">
+      <div class="offcanvas-header">
+        <h5 class="offcanvas-title text-light" id="offcanvasDarkNavbarLabel">
+           {% if request.session.user %}
+            <img src="/{{request.session.userpic}}" style="height:70px; width:70px; border-radius:50%;" class="img-fluid"/>
+            {{request.session.username}}
+            <p style="font-size:13px;" class="text-end">
+              {{request.session.user}}
+            </p>
+            {% endif %}
+        </h5>
+
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+      </div>
+      <div class="offcanvas-body">
+        <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="/student/index/">
+                <i class="fa-solid fa-list"></i> Dashboard</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/teacher/lecturedepartment/">
+                <i class="fa-solid fa-video"></i> Lecture</a>
+          </li>
+            <li class="nav-item">
+            <a class="nav-link" href="/teacher/notesdepartment/">
+                <i class="fa-solid fa-book"></i> E-Notes</a>
+          </li>
+            <li class="nav-item">
+            <a class="nav-link" href="/teacher/tasks/">
+                <i class="fa-solid fa-video"></i> Task</a>
+            </li>
+
+            <li class="nav-item">
+            <a class="nav-link" href="/teacher/uprofile/">
+                <i class="fa-solid fa-user"></i> Update Profile</a>
+          </li>
+
+            <li class="nav-item">
+            <a class="nav-link" href="/teacher/softwarekit/">
+                <i class="fa-solid fa-download"></i> Software Kit</a>
+          </li>
+            <li class="nav-item">
+            <a class="nav-link" href="/teacher/logout/">
+                <i class="fa-solid fa-power-off"></i> Logout</a>
+          </li>
+            </ul>
+      </div>
+    </div>
+  </div>
+</nav>
+            <!--end menu-->
+        </div>
+
+</div>
+<div class="row">
+    <div class="col-sm-12" style="min-height:450px; background:#f6f6f6;">
+        {% block teacherzone %}
+
+        {% endblock %}
+    </div>
+</div>
+
+<div class="row footer bg-dark text-center text-light py-2 fs-5" style="margin-top:15%;">
+    <div class="col-sm-6">
+        &copy; Study Hall College
+    </div>
+    <div class="col-sm-2">
+        Developed By:
+    </div>
+    <div class="badge-base LI-profile-badge col-sm-2" data-locale="en_US" data-size="medium" data-theme="dark" data-type="VERTICAL" data-vanity="sachin-kumar-yadav-web-developer" data-version="v1">
+                <a class="badge-base__link LI-simple-link text-warning" href="https://in.linkedin.com/in/sachin-kumar-yadav-web-developer?trk=profile-badge">Sachin</a>
+            </div>
+</div>
+</div>
+
+<script src="{% static 'js/bootstrap.bundle.js'%}"></script>
+
+</body>
+</html>

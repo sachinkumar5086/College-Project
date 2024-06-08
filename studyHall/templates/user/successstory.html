@@ -16,7 +16,7 @@
                     {% endfor %}
                 </select>
             </div>
-            <div class="col-sm-5 ">
+            <div class="col-sm-5 my-1">
 
                 <select class="form-control" name="year" placeholder="Enter Your Name" >
                 <option>--Select year--</option>
@@ -38,9 +38,9 @@
         <div class="row py-3 mb-5" style="background:#deedec; ">
             <!--start card-->
             {% for a in pdata %}
-            <div class="col-lg-3 col-md-6 col-sm-12" >
-                <div class="card" style="max-width:140px;">
-                    <img src="/{{a.student_picture}}" style="max-width:160px;" class="card-img-top" />
+            <div class="col-lg-3 col-md-6 col-sm-6 my-2" >
+                <div class="card" style="max-width:200px;">
+                    <img src="/{{a.student_picture}}" style="max-height:160px;" class="card-img-top" />
                     <div class="card-body">
                         <p class="card-text">
                             <b>{{a.student_name}}</b><br>

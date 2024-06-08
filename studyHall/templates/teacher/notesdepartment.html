@@ -1,0 +1,39 @@
+{% extends 'teacherbase.html'%}
+{% load static %}
+{% block teacherzone %}
+{% if not request.session.user %}
+<script>
+    alert('You have to login first..');
+    location.href="/user/signin/"
+</script>
+{% endif %}
+{% for i in edata %}
+<div class="text-center fs-2 mt-2">
+     <B class=" border border-success border-1 text-success">{{i.department_name}} Department </B>
+
+</div>
+{% endfor %}
+<div class="text-center mt-5">
+    <h3>Select Semester</h3>
+</div>
+<div class="row">
+    <div class="col-sm-10 mx-auto">
+        <div class="row">
+            <!--video category-->
+            {% for i in cdata %}
+            <div class="col-lg-4 col-md-4 col-sm-12 mb-5">
+                <div class="card">
+<!--                    <a href="/student/lecturesvideo?semester_id={{i.semester}}" ><img src="/{{i.thumbnail}}" style="height:145px;" class="card-image-top"></a>-->
+                    <div class="card-body text-center">
+                        <a href="/teacher/notesubject?semester_id={{i.id}}" style="text-decoration:none;color:grey;"> <h1><b>{{i.semester}}</b></h1> </a>
+                    </div>
+                </div>
+            </div>
+
+        {% endfor %}
+         <!--end video category-->
+       </div>
+    </div>
+</div>
+
+{% endblock %}

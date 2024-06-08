@@ -1,6 +1,6 @@
-{% extends 'studentbase.html'%}
+{% extends 'teacherbase.html'%}
 {% load static %}
-{% block studentzone %}
+{% block teacherzone %}
 {% if not request.session.user %}
 <script>
     alert('You have to login first..');
@@ -28,7 +28,7 @@
                     <form method="post" action="/student/stask/" enctype="multipart/form-data">
                         {% csrf_token %}
                         <input type="hidden" name="tid" value="{{x.id}}" />
-                        <input type="hidden" name="title" value="{{x.title}}" />
+                        <input type="hidden" name="title" value="{{x.subject}}" />
                         <input type="file" name="fu"/>
                         <input type="submit" value="Upload" class="btn btn-danger"/>
                     </form>
@@ -47,7 +47,7 @@
             </tr>
             {% for i in data %}
             <tr>
-                <td>{{i.title}}</td>
+                <td>{{i.subject}}</td>
                 <td>{{i.marks}}</td>
             </tr>
             {% endfor %}

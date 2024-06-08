@@ -46,6 +46,7 @@ def studentlogin(request):
             request.session['user']=email
             y=student.objects.filter(email=email,passwd=passwd)
             request.session['userpic']=str(y[0].pic)
+            request.session['student_ID']=str(y[0].student_ID)
             request.session['username'] = str(y[0].name)
             request.session['department'] = str(y[0].department)
             request.session['department_id'] = str(y[0].department.id)
@@ -67,6 +68,7 @@ def teacherlogin(request):
         if x==1:
             request.session['user']=email
             y=teacher.objects.filter(email=email,passwd=passwd)
+            request.session['teacher_Id']=str(y[0].teacher_Id)
             request.session['userpic']=str(y[0].pic)
             request.session['username'] = str(y[0].name)
             request.session['department'] = str(y[0].department)

@@ -1,24 +1,29 @@
-{% extends 'studentbase.html'%}
+{% extends 'teacherbase.html'%}
 {% load static %}
-{% block studentzone %}
+{% block teacherzone %}
 {% if not request.session.user %}
 <script>
     alert('You have to login first..');
     location.href="/user/signin/"
 </script>
 {% endif %}
-<div class="text-center fs-2 mt-2">
-    E-<B class="txt-mycolor1">Notes</B>
+
+{% for i in sdata%}
+<div class="text-center txt-mycolor3 fs-2 my-3"><h3>{{i.subject_name}}
+    <B class="txt-mycolor1">  Notes</B></h3>
 </div>
+{% endfor %}
+
 <div class="row">
     <div class="col-sm-10 mx-auto">
         <div class="row">
             {% for i in ndata %}
-            <div class="col-sm-3">
+
+            <div class="col-lg-3 col-md-4 col-sm-6">
                 <div class="card">
-                    <img src="/{{i.note_pic}}" class="card-img-top">
+<!--                    <img class="card-img-top img-thumbnail" src="/{{i.thumbnail}}" style="max-height:140px;">-->
                     <div class="card-body text-center">
-                        <b>{{i.title}}</b></br>
+                        <b class="text-dark">{{i.description}}</b><br>
                         <a href="/{{i.notes_pdf}}" class="btn btn-success btn-sm" target="_blank">Download
                             <i class="fa-solid fa-download"></i></a>
                     </div>

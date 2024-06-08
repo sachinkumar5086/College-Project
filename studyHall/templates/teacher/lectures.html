@@ -1,43 +1,124 @@
-{% extends 'studentbase.html'%}
+{% extends 'teacherbase.html'%}
 {% load static %}
-{% block studentzone %}
+{% block teacherzone %}
 {% if not request.session.user %}
 <script>
     alert('You have to login first..');
     location.href="/user/signin/"
 </script>
 {% endif %}
-<div class="text-center fs-2 mt-2">
-     My<B class="txt-mycolor1"> Lecture Videos</B>
+<style>
+    #frm
+    {
+   display:none;
+    }
+</style>
+<script>
+    function demo()
+    {
+    document.getElementById("frm").style.display="block"
+    }
+</script>
+<div class="row my-2">
+    <div class="col-lg-6 col-md-6 col-sm-12 fs-2 text-center" >Lecture<B class="txt-mycolor1"> Videos</B></div>
+    <div class="col-lg-6 col-md-6 col-sm-12 fs-2 text-center" >
+        <a href="#" class="btn btn-primary text-light btn-sm" onclick="demo()">
+            Add New Lectures<i class="fa-solid fa-plus"></i>
+        </a>
+   </div>
 </div>
-<div class="row bg-dark text-light">
-    <div class="col-lg-6 col-md-6 col-sm-12" >Added Lectures</div>
-<!--    <div class="col-lg-6 col-md-6 col-sm-12"><i class="fa-solid fa-plus"></i>Add New Lectures</div>-->
+
+<div class="row bg-dark text-light my-2">
+    <div class="col-sm-12 fs-2 text-center" >Added Lectures</div>
 </div>
+<div class="row py-4" id="frm">
+    <div class="col-sm-6 mx-auto" style="background:#e1dddd; max-height:400px;">
+        <form method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <h3 class="text-center txt-mycolor2">Add New Lectures</h3>
+                    <div class="row">
+                        <div class="col-lg-6 col-md-6 col-sm-12">Select Subject:
+                            <select name="subject">
+                                {% for i in sdata%}
+                                <option value="{{i.subject_name}}">{{i.subject_name}}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+
+                        <div class="col-lg-6 col-md-12 col-sm-12 mb-3">Add Link:
+                            <input type="text" name="link" id="link" value="" placeholder="Video Link" class="form-control " required />
+                        </div>
+                        <div class="col-lg-6 col-md-12 col-sm-12 mb-3">Add Description:
+                            <input type="text" name="desc" id="description" value="" placeholder="Add description" class="form-control " required />
+                        </div>
+
+                        <div class="col-lg-6 col-md-12 col-sm-12 ">Select date:
+                            <input type="date" name="date" class="form-control"/>
+                        </div>
+                        <div>
+                            <input type="submit" value="Save" class=" btn bg-mycolor2 text-light my-2"/>
+                        </div>
+                    </div>
+                </form>
+    </div>
+</div>
+
 <div class="row">
-    <div class="col-sm-12">
+    <div class="col-sm-10 mx-auto">
         <div class="row">
-            {% for i in vdata %}
-    <div class="col-sm-4">
-    <!--start card-->
-        <div class="card mb-3" style="background:#cee8e6;">
-            <div class="row g-0">
-                <div class="col-sm-4">
-                    <iframe class="img-fluid rounded-start" src="{{i.vlink}}" style="min-height-220px;" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-                </div>
-                <div class="col-sm-4">
-                    <div class="card-body">
-                        <p class="card-text">{{i.video_description}}</p>
-                <p class="card-text"><small class="text-body-secondary"> Added Date: {{i.added_date}}</small></p>
-              </div>
+            <!--video category-->
+            {% for x in sdata%}
+            <div class="col-lg-3 col-md-4 col-sm-12">
+                <div class="card text-center">
+                    <a href="/teacher/lecturesvideo?subject_name={{x.subject_name}}" ><img src="/{{x.thumbnail}}" style="height:145px;" class="card-image-top img-fluid"></a>
+                    <div class="card-body text-center">
+                        <a href="/teacher/lecturesvideo?subject_name={{x.subject_name}}" style="text-decoration:none;color:grey;"> <h4>{{x.subject_name}}</h4> </a>
                     </div>
                 </div>
+            </div>
+        {% endfor %}
+         <!--end video category-->
+       </div>
+
     </div>
   </div>
-            {% endfor %}
 </div>
      <!--end card-->
 
     </div>
 </div>
+
 {% endblock %}
+
+<!--<div class="text-center fs-2 mt-2">-->
+<!--     My<B class="txt-mycolor1"> Lecture Videos</B>-->
+<!--</div>-->
+<!--<div class="row bgcolor1">-->
+<!--    <div class="col-sm-6" >Added Lectures</div>-->
+<!--    <div class="col-sm-6">Add New Lectures</div>-->
+<!--</div>-->
+<!--<div class="row">-->
+<!--    <div class="col-sm-12">-->
+<!--        <div class="row">-->
+<!--            {% for i in vdata %}-->
+<!--    <div class="col-sm-4">-->
+<!--    &lt;!&ndash;start card&ndash;&gt;-->
+<!--        <div class="card mb-3" style="background:#cee8e6;">-->
+<!--            <div class="row g-0">-->
+<!--                <div class="col-sm-4">-->
+<!--                    <iframe class="img-fluid rounded-start" src="{{i.vlink}}" style="min-height-220px;" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>-->
+<!--                </div>-->
+<!--                <div class="col-sm-4">-->
+<!--                    <div class="card-body">-->
+<!--                        <p class="card-text">{{i.video_description}}</p>-->
+<!--                <p class="card-text"><small class="text-body-secondary"> Added Date: {{i.added_date}}</small></p>-->
+<!--              </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--    </div>-->
+<!--  </div>-->
+<!--</div>-->
+<!--     &lt;!&ndash;end card&ndash;&gt;-->
+<!--      {% endfor %} -->
+<!--    </div>-->
+<!--</div>-->

@@ -1,32 +1,86 @@
-{% extends 'studentbase.html'%}
+{% extends 'teacherbase.html'%}
 {% load static %}
-{% block studentzone %}
+{% block teacherzone %}
 {% if not request.session.user %}
 <script>
     alert('You have to login first..');
     location.href="/user/signin/"
 </script>
 {% endif %}
+<style>
+    #frm
+    {
+   display:none;
+    }
+</style>
+<script>
+    function demo()
+    {
+    document.getElementById("frm").style.display="block"
+    }
+</script>
 <div class="text-center fs-2 my-2">
-     Lecture <B class="txt-mycolor1">Videos</B>
+     My<B class="txt-mycolor1"> Lecture Subjects</B>
+</div>
+<div class="row bg-dark text-light my-2">
+    <div class="col-sm-12 fs-2 text-center">Added Lectures</div>
 </div>
 <div class="row">
     <div class="col-sm-10 mx-auto">
         <div class="row">
             <!--video category-->
-            {% for i in cdata %}
+            {% for x in sdata%}
             <div class="col-lg-3 col-md-4 col-sm-12">
-                <div class="card">
-                    <a href="/student/lecturesvideo?subject_id={{i.id}}" ><img src="/{{i.thumbnail}}" style="height:145px;" class="card-image-top"></a>
+                <div class="card text-center">
+                    <a href="/student/lecturesvideo?subject_name={{x.subject_name}}" ><img src="/{{x.thumbnail}}" style="height:145px;" class="card-image-top img-fluid"></a>
                     <div class="card-body text-center">
-                        <a href="/student/lecturesvideo?subject_id={{i.id}}" style="text-decoration:none;color:grey;"> <h4>{{i.subject}}</h4> </a>
+                        <a href="/student/lecturesvideo?subject_name={{x.subject_name}}" style="text-decoration:none;color:grey;"> <h4>{{x.subject_name}}</h4> </a>
                     </div>
                 </div>
             </div>
         {% endfor %}
          <!--end video category-->
        </div>
+
+    </div>
+  </div>
+</div>
+     <!--end card-->
+
     </div>
 </div>
 
 {% endblock %}
+
+<!--<div class="text-center fs-2 mt-2">-->
+<!--     My<B class="txt-mycolor1"> Lecture Videos</B>-->
+<!--</div>-->
+<!--<div class="row bgcolor1">-->
+<!--    <div class="col-sm-6" >Added Lectures</div>-->
+<!--    <div class="col-sm-6">Add New Lectures</div>-->
+<!--</div>-->
+<!--<div class="row">-->
+<!--    <div class="col-sm-12">-->
+<!--        <div class="row">-->
+<!--            {% for i in vdata %}-->
+<!--    <div class="col-sm-4">-->
+<!--    &lt;!&ndash;start card&ndash;&gt;-->
+<!--        <div class="card mb-3" style="background:#cee8e6;">-->
+<!--            <div class="row g-0">-->
+<!--                <div class="col-sm-4">-->
+<!--                    <iframe class="img-fluid rounded-start" src="{{i.vlink}}" style="min-height-220px;" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>-->
+<!--                </div>-->
+<!--                <div class="col-sm-4">-->
+<!--                    <div class="card-body">-->
+<!--                        <p class="card-text">{{i.video_description}}</p>-->
+<!--                <p class="card-text"><small class="text-body-secondary"> Added Date: {{i.added_date}}</small></p>-->
+<!--              </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--    </div>-->
+<!--  </div>-->
+<!--</div>-->
+<!--     &lt;!&ndash;end card&ndash;&gt;-->
+<!--      {% endfor %} -->
+<!--    </div>-->
+<!--</div>-->
